@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">質感檔案圖示</string>
+    <string name="file_path">檔案路徑</string>
+    <string name="invalid_file_path">檔案路徑無效</string>
+</resources>

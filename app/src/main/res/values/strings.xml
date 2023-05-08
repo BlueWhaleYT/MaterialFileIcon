@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MaterialFileIcon</string>
+    <string name="file_path">File path</string>
+    <string name="invalid_file_path">File path is invalid</string>
+</resources>
