@@ -62,6 +62,7 @@ public class FileIconHelper {
             if (filePath.equals("")) fileIconRes = R.drawable.ic_material_folder;
             else if (fileEnvHelper.nodejs().isNodeJsDirectory()) fileIconRes = R.drawable.ic_material_folder_node;
             else if (fileEnvHelper.angularjs().isAngularJsDirectory()) fileIconRes = R.drawable.ic_material_folder_angular;
+            else if (fileEnvHelper.react().isReactDirectory()) fileIconRes = R.drawable.ic_material_folder_react_component;
             else {
                 if (FileUtil.isFileHidden(fileName)) {
                     fileIconRes = R.drawable.ic_material_folder_hidden;
@@ -158,11 +159,13 @@ public class FileIconHelper {
                 break;
             case "js":
                 if (fileEnvHelper.nodejs().isNodeJsFile()) fileIconRes = R.drawable.ic_material_nodejs;
+                else if (fileEnvHelper.react().isReactFile()) fileIconRes = R.drawable.ic_material_react;
                 else fileIconRes = R.drawable.ic_material_javascript;
                 break;
             case "json":
                 if (fileEnvHelper.nodejs().isNodeJsPackageJsonFile()) fileIconRes = R.drawable.ic_material_nodejs;
-                else if (fileEnvHelper.angularjs().isAngularJsPackageJsonFile()) fileIconRes = R.drawable.ic_material_angular;
+                else if (fileEnvHelper.angularjs().isAngularJsPackageJsonFile()) fileIconRes = R.drawable.ic_material_npm;
+                else if (fileEnvHelper.react().isReactPackageJsonFile()) fileIconRes = R.drawable.ic_material_npm;
                 else fileIconRes = R.drawable.ic_material_json;
                 break;
             case "kt":
@@ -209,7 +212,8 @@ public class FileIconHelper {
                 fileIconRes = R.drawable.ic_material_swift;
                 break;
             case "ts":
-                fileIconRes = R.drawable.ic_material_typescript;
+                if (fileEnvHelper.react().isReactFile()) fileIconRes = R.drawable.ic_material_react_ts;
+                else fileIconRes = R.drawable.ic_material_typescript;
                 break;
             case "xml":
             case "xsl":

@@ -20,6 +20,10 @@ public class FileEnvironmentHelper {
         return new AngularJsHelper(this);
     }
 
+    public ReactHelper react() {
+        return new ReactHelper(this);
+    }
+
     public static class NodejsHelper {
         private FileEnvironmentHelper instance;
 
@@ -57,6 +61,26 @@ public class FileEnvironmentHelper {
 
         public boolean isAngularJsPackageJsonFile() {
             return AngularJsDetector.isAngularJSPackageJsonFile(instance.filePath);
+        }
+    }
+
+    public static class ReactHelper {
+        private FileEnvironmentHelper instance;
+
+        public ReactHelper(FileEnvironmentHelper instance) {
+            this.instance = instance;
+        }
+
+        public boolean isReactDirectory() {
+            return ReactDetector.isReactDirectory(instance.filePath);
+        }
+
+        public boolean isReactFile() {
+            return ReactDetector.isReactFile(instance.filePath);
+        }
+
+        public boolean isReactPackageJsonFile() {
+            return ReactDetector.isReactPackageJsonFile(instance.filePath);
         }
     }
 
