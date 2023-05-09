@@ -24,4 +24,16 @@ public class FileEnvironmentHelper {
         return NodejsDetector.isNodeJsPackageJsonFile(filePath);
     }
 
+    public boolean isAngularJsDirectory() {
+        return AngularJsDetector.isAngularJSDirectory(filePath);
+    }
+
+    public boolean isAngularJsFile() {
+        return AngularJsDetector.isAngularJSFile(filePath);
+    }
+
+    public boolean isAngularJsPackageJsonFile() {
+        return AngularJsDetector.isAngularJSPackageJsonFile(filePath);
+    }
+
 }

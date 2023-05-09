@@ -1,6 +1,7 @@
 # MaterialFileIcon 質感檔案圖示
 
-MaterialFileIcon is a simple, but efficient library providing a way that equipping the material file icons to your desired image view or whatever you want it binds to.
+MaterialFileIcon is a simple, but an efficient library providing a way that equipping the material file icons to your desired image view or whatever you want it binds to.
+It's useful when you are developing a file manager.
 
 ## Get Started
 
@@ -18,14 +19,15 @@ fileIconHelper.bindIcon(imageView);
 or you can simply get the file icon.
 
 ```java
-imageView.setImageResources(fileIconHelper.getFileIcon());
+imageView.setImageResource(fileIconHelper.getFileIcon());
 ```
 
 ## Features
 
-This library supports icon of environment.
-
-- NodeJS
+- 50+ languages supported
+- environment languages supported
+    - NodeJS
+    - AngularJS
 
 ## Thanks to
 

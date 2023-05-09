@@ -59,14 +59,9 @@ public class FileIconHelper {
 
         if (FileUtil.isDirectory(filePath) || SAFUtil.isDirectory(mimeType)) {
             var fileName = FileUtil.getFileNameOfPath(filePath);
-            if (filePath.equals("")) {
-                fileIconRes = R.drawable.ic_material_folder;
-            }
-
-            else if (fileEnvHelper.isNodeJsDirectory()) {
-                fileIconRes = R.drawable.ic_material_folder_node;
-            }
-
+            if (filePath.equals("")) fileIconRes = R.drawable.ic_material_folder;
+            else if (fileEnvHelper.isNodeJsDirectory()) fileIconRes = R.drawable.ic_material_folder_node;
+            else if (fileEnvHelper.isAngularJsDirectory()) fileIconRes = R.drawable.ic_material_folder_angular;
             else {
                 if (FileUtil.isFileHidden(fileName)) {
                     fileIconRes = R.drawable.ic_material_folder_hidden;
@@ -155,16 +150,20 @@ public class FileIconHelper {
                 break;
             case "htm":
             case "html":
-                fileIconRes = R.drawable.ic_material_html;
+                if (fileEnvHelper.isAngularJsFile()) fileIconRes = R.drawable.ic_material_angular;
+                else fileIconRes = R.drawable.ic_material_html;
                 break;
             case "java":
                 fileIconRes = R.drawable.ic_material_java;
                 break;
             case "js":
-                fileIconRes = fileEnvHelper.isNodeJsFile() ? R.drawable.ic_material_nodejs : R.drawable.ic_material_javascript;
+                if (fileEnvHelper.isNodeJsFile()) fileIconRes = R.drawable.ic_material_nodejs;
+                else fileIconRes = R.drawable.ic_material_javascript;
                 break;
             case "json":
-                fileIconRes = fileEnvHelper.isNodeJsPackageJsonFile() ? R.drawable.ic_material_nodejs : R.drawable.ic_material_json;
+                if (fileEnvHelper.isNodeJsPackageJsonFile()) fileIconRes = R.drawable.ic_material_nodejs;
+                else if (fileEnvHelper.isAngularJsPackageJsonFile()) fileIconRes = R.drawable.ic_material_angular;
+                else fileIconRes = R.drawable.ic_material_json;
                 break;
             case "kt":
                 fileIconRes = R.drawable.ic_material_kotlin;
