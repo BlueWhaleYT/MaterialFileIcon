@@ -21,4 +21,9 @@ class GitDetector {
         File parentDir = new File(file.getParent());
         return isGitDirectory(parentDir.getAbsolutePath());
     }
+
+    protected static boolean isGitIgnoreFile(String filePath) {
+        return new FileEnvironmentHelper(filePath).isFileHasKeyName(filePath, ".gitignore");
+    }
+
 }

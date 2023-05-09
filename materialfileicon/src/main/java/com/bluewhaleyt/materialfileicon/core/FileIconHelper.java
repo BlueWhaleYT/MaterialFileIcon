@@ -100,6 +100,7 @@ public class FileIconHelper {
             case "jpg":
             case "jpeg":
             case "png":
+            case "gif":
             case "tiff":
             case "webp":
                 fileIconRes = R.drawable.ic_material_image;
@@ -108,6 +109,17 @@ public class FileIconHelper {
             case "swf":
             case "svg":
                 fileIconRes = R.drawable.ic_material_svg;
+                break;
+
+            // video files
+            case "mp4":
+            case "mov":
+            case "wmv":
+            case "avi":
+            case "webm":
+            case "mkv":
+            case "flv":
+                fileIconRes = R.drawable.ic_material_video;
                 break;
 
             // font files
@@ -141,6 +153,11 @@ public class FileIconHelper {
                 break;
             case "dart":
                 fileIconRes = R.drawable.ic_material_dart;
+                break;
+            case "doc":
+            case "docs":
+            case "docx":
+                fileIconRes = R.drawable.ic_material_word;
                 break;
             case "go":
                 fileIconRes = R.drawable.ic_material_go;
@@ -198,6 +215,9 @@ public class FileIconHelper {
             case "pdf":
                 fileIconRes = R.drawable.ic_material_pdf;
                 break;
+            case "ppt":
+                fileIconRes = R.drawable.ic_material_powerpoint;
+                break;
             case "php":
                 fileIconRes = R.drawable.ic_material_php;
                 break;
@@ -241,11 +261,18 @@ public class FileIconHelper {
                 fileIconRes = R.drawable.ic_material_android;
                 break;
 
+            case "mcworld":
+            case "mcpack":
+            case "mcaddon":
+                fileIconRes = R.drawable.ic_material_minecraft;
+                break;
+
             default:
                 fileIconRes = R.drawable.ic_material_document;
         }
 
         if (fileEnvHelper.readme().isReadmeFile()) fileIconRes = R.drawable.ic_material_readme;
+        else if (fileEnvHelper.git().isGitIgnoreFile()) fileIconRes = R.drawable.ic_material_git;
         else if (fileEnvHelper.isLicenseFile()) fileIconRes = R.drawable.ic_material_certificate;
 
     }

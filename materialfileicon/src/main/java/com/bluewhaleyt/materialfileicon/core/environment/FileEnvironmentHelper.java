@@ -42,13 +42,18 @@ public class FileEnvironmentHelper {
         return isFileHasKeyRegex(filePath, "(?i)license(\\.(txt|md))?");
     }
 
-    private boolean isFileHasKeyRegex(String filePath, String regex) {
+    public boolean isFileHasKeyRegex(String filePath, String regex) {
         File file = new File(filePath);
-        if (file.isDirectory()) {
-            return false;
-        }
+        if (file.isDirectory()) return false;
         String fileName = file.getName();
         return fileName.matches(regex);
+    }
+
+    public boolean isFileHasKeyName(String filePath, String name) {
+        File file = new File(filePath);
+        if (file.isDirectory()) return false;
+        String fileName = file.getName();
+        return fileName.equalsIgnoreCase(name);
     }
 
     public static class ReadmeHelper {
@@ -132,6 +137,10 @@ public class FileEnvironmentHelper {
 
         public boolean isGitDirectory() {
             return GitDetector.isGitDirectory(instance.filePath);
+        }
+
+        public boolean isGitIgnoreFile() {
+            return GitDetector.isGitIgnoreFile(instance.filePath);
         }
 
     }
