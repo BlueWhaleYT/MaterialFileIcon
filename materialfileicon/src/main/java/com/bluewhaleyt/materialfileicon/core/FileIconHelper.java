@@ -76,10 +76,14 @@ public class FileIconHelper {
     }
 
     private void apply() {
-        var str = "";
-        if (!filePath.equals("")) str = FileUtil.getFileExtensionOfPath(filePath.toLowerCase());
+        var fileExt = "";
+        var fileName = "";
+        if (!filePath.equals("")) {
+            fileExt = FileUtil.getFileExtensionOfPath(filePath.toLowerCase());
+            fileName = FileUtil.getFileNameOfPath(filePath);
+        }
 
-        switch (str) {
+        switch (fileExt) {
             // compress files
             case "7z":
             case "rar":
@@ -186,6 +190,9 @@ public class FileIconHelper {
             case "mdx":
                 fileIconRes = R.drawable.ic_material_mdx;
                 break;
+            case "pas":
+                fileIconRes = R.drawable.ic_material_pascal;
+                break;
             case "pdf":
                 fileIconRes = R.drawable.ic_material_pdf;
                 break;
@@ -211,6 +218,9 @@ public class FileIconHelper {
             case "swift":
                 fileIconRes = R.drawable.ic_material_swift;
                 break;
+            case "test.js":
+                fileIconRes = R.drawable.ic_material_test_js;
+                break;
             case "ts":
                 if (fileEnvHelper.react().isReactFile()) fileIconRes = R.drawable.ic_material_react_ts;
                 else fileIconRes = R.drawable.ic_material_typescript;
@@ -232,6 +242,13 @@ public class FileIconHelper {
             default:
                 fileIconRes = R.drawable.ic_material_document;
         }
+
+//        switch (fileName) {
+//            case "README.md":
+//                fileIconRes = R.drawable.ic_material_readme;
+//                break;
+//        }
+
     }
 
 }
