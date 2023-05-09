@@ -4,13 +4,23 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="20dp"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="?selectableItemBackground">
 
-    <ImageView
-        android:id="@+id/img_file_icon"
+    <LinearLayout
+        android:id="@+id/layout_img_file_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"/>
+        android:layout_marginEnd="20dp"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/img_file_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_material_folder" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.os.Bundle;
 
 import com.bluewhaleyt.common.IntentUtil;
+import com.bluewhaleyt.common.PermissionUtil;
 import com.bluewhaleyt.crashdebugger.CrashDebugger;
 import com.bluewhaleyt.filemanagement.FileComparator;
 import com.bluewhaleyt.filemanagement.FileUtil;
@@ -32,7 +33,17 @@ public class FileListActivity extends AppCompatActivity {
         CrashDebugger.init(this);
         binding = ActivityFileListBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        setupFileList();
+        if (isGrantedPermissions()) setupFileList();
+        else PermissionUtil.requestAllFileAccess(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    private boolean isGrantedPermissions() {
+        return PermissionUtil.isAlreadyGrantedExternalStorageAccess();
     }
 
     private void setupFileList() {

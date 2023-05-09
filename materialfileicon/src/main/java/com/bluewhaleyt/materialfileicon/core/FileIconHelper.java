@@ -69,7 +69,7 @@ public class FileIconHelper {
             else if (fileEnvHelper.git().isGitDirectory()) fileIconRes = R.drawable.ic_material_folder_git;
             else {
                 if (FileUtil.isFileHidden(fileName)) {
-                    fileIconRes = R.drawable.ic_material_folder_hidden;
+                    fileIconRes = R.drawable.ic_material_folder_secure;
                 } else {
                     fileIconRes = R.drawable.ic_material_folder;
                 }
