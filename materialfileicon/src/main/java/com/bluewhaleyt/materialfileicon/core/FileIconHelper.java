@@ -5,7 +5,7 @@ import android.widget.ImageView;
 import com.bluewhaleyt.filemanagement.FileUtil;
 import com.bluewhaleyt.filemanagement.SAFUtil;
 import com.bluewhaleyt.materialfileicon.R;
-import com.bluewhaleyt.materialfileicon.core.detector.FileEnvironmentHelper;
+import com.bluewhaleyt.materialfileicon.core.environment.FileEnvironmentHelper;
 
 public class FileIconHelper {
 
@@ -60,9 +60,13 @@ public class FileIconHelper {
         if (FileUtil.isDirectory(filePath) || SAFUtil.isDirectory(mimeType)) {
             var fileName = FileUtil.getFileNameOfPath(filePath);
             if (filePath.equals("")) fileIconRes = R.drawable.ic_material_folder;
-            else if (fileEnvHelper.nodejs().isNodeJsDirectory()) fileIconRes = R.drawable.ic_material_folder_node;
+            if (fileEnvHelper.nodejs().isNodeJsDirectory()) fileIconRes = R.drawable.ic_material_folder_node;
             else if (fileEnvHelper.angularjs().isAngularJsDirectory()) fileIconRes = R.drawable.ic_material_folder_angular;
             else if (fileEnvHelper.react().isReactDirectory()) fileIconRes = R.drawable.ic_material_folder_react_component;
+
+            else if (fileEnvHelper.android().isAndroidDevDirectory()) fileIconRes = R.drawable.ic_material_folder_android;
+
+            else if (fileEnvHelper.git().isGitDirectory()) fileIconRes = R.drawable.ic_material_folder_git;
             else {
                 if (FileUtil.isFileHidden(fileName)) {
                     fileIconRes = R.drawable.ic_material_folder_hidden;

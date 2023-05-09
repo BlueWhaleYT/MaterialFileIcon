@@ -1,4 +1,4 @@
-package com.bluewhaleyt.materialfileicon.core.detector;
+package com.bluewhaleyt.materialfileicon.core.environment;
 
 import org.json.JSONException;
 import org.json.JSONObject;

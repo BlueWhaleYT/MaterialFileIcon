@@ -1,4 +1,4 @@
-package com.bluewhaleyt.materialfileicon.core.detector;
+package com.bluewhaleyt.materialfileicon.core.environment;
 
 public class FileEnvironmentHelper {
 
@@ -12,6 +12,10 @@ public class FileEnvironmentHelper {
         return filePath;
     }
 
+    public GitHelper git() {
+        return new GitHelper(this);
+    }
+
     public NodejsHelper nodejs() {
         return new NodejsHelper(this);
     }
@@ -22,6 +26,10 @@ public class FileEnvironmentHelper {
 
     public ReactHelper react() {
         return new ReactHelper(this);
+    }
+
+    public AndroidDevHelper android() {
+        return new AndroidDevHelper(this);
     }
 
     public static class NodejsHelper {
@@ -82,6 +90,32 @@ public class FileEnvironmentHelper {
         public boolean isReactPackageJsonFile() {
             return ReactDetector.isReactPackageJsonFile(instance.filePath);
         }
+    }
+
+    public static class GitHelper {
+        private FileEnvironmentHelper instance;
+
+        public GitHelper(FileEnvironmentHelper instance) {
+            this.instance = instance;
+        }
+
+        public boolean isGitDirectory() {
+            return GitDetector.isGitDirectory(instance.filePath);
+        }
+
+    }
+
+    public static class AndroidDevHelper {
+        private FileEnvironmentHelper instance;
+
+        public AndroidDevHelper(FileEnvironmentHelper instance) {
+            this.instance = instance;
+        }
+
+        public boolean isAndroidDevDirectory() {
+            return AndroidDevDetector.isAndroidDevDirectory(instance.filePath);
+        }
+
     }
 
 }

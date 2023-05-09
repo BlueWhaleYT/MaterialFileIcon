@@ -1,4 +1,4 @@
-package com.bluewhaleyt.materialfileicon.core.detector;
+package com.bluewhaleyt.materialfileicon.core.environment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -7,13 +7,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 class NodejsDetector {
 
