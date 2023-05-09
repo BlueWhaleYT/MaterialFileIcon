@@ -12,28 +12,52 @@ public class FileEnvironmentHelper {
         return filePath;
     }
 
-    public boolean isNodeJsDirectory() {
-        return NodejsDetector.isNodeJsDirectory(filePath);
+    public NodejsHelper nodejs() {
+        return new NodejsHelper(this);
     }
 
-    public boolean isNodeJsFile() {
-        return NodejsDetector.isNodeJsFile(filePath);
+    public AngularJsHelper angularjs() {
+        return new AngularJsHelper(this);
     }
 
-    public boolean isNodeJsPackageJsonFile() {
-        return NodejsDetector.isNodeJsPackageJsonFile(filePath);
+    public static class NodejsHelper {
+        private FileEnvironmentHelper instance;
+
+        public NodejsHelper(FileEnvironmentHelper instance) {
+            this.instance = instance;
+        }
+
+        public boolean isNodeJsDirectory() {
+            return NodejsDetector.isNodeJsDirectory(instance.filePath);
+        }
+
+        public boolean isNodeJsFile() {
+            return NodejsDetector.isNodeJsFile(instance.filePath);
+        }
+
+        public boolean isNodeJsPackageJsonFile() {
+            return NodejsDetector.isNodeJsPackageJsonFile(instance.filePath);
+        }
     }
 
-    public boolean isAngularJsDirectory() {
-        return AngularJsDetector.isAngularJSDirectory(filePath);
-    }
+    public static class AngularJsHelper {
+        private FileEnvironmentHelper instance;
 
-    public boolean isAngularJsFile() {
-        return AngularJsDetector.isAngularJSFile(filePath);
-    }
+        public AngularJsHelper(FileEnvironmentHelper instance) {
+            this.instance = instance;
+        }
 
-    public boolean isAngularJsPackageJsonFile() {
-        return AngularJsDetector.isAngularJSPackageJsonFile(filePath);
+        public boolean isAngularJsDirectory() {
+            return AngularJsDetector.isAngularJSDirectory(instance.filePath);
+        }
+
+        public boolean isAngularJsFile() {
+            return AngularJsDetector.isAngularJSFile(instance.filePath);
+        }
+
+        public boolean isAngularJsPackageJsonFile() {
+            return AngularJsDetector.isAngularJSPackageJsonFile(instance.filePath);
+        }
     }
 
 }
