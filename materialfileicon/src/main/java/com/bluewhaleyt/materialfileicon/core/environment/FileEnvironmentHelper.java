@@ -42,6 +42,26 @@ public class FileEnvironmentHelper {
         return isFileHasKeyRegex(filePath, "(?i)license(\\.(txt|md))?");
     }
 
+    public boolean isSrcDirectory() {
+        return isFileHasKeyName(filePath, "src", false, true);
+    }
+
+    public boolean isPublicDirectory() {
+        return isFileHasKeyName(filePath, "public", false, true);
+    }
+
+    public boolean isAppDirectory() {
+        return isFileHasKeyName(filePath, "app", false, true);
+    }
+
+    public boolean isDownloadDirectory() {
+        return isFileHasKeyName(filePath, "Download", false, false);
+    }
+
+    public boolean isJavaDirectory() {
+        return isFileHasKeyName(filePath, "java", false, true);
+    }
+
     public boolean isFileHasKeyRegex(String filePath, String regex) {
         File file = new File(filePath);
         if (file.isDirectory()) return false;
@@ -49,11 +69,13 @@ public class FileEnvironmentHelper {
         return fileName.matches(regex);
     }
 
-    public boolean isFileHasKeyName(String filePath, String name) {
+    public boolean isFileHasKeyName(String filePath, String name, boolean isDir, boolean isIgnoreCase) {
         File file = new File(filePath);
-        if (file.isDirectory()) return false;
+        if (isDir) if (file.isDirectory()) return false;
         String fileName = file.getName();
-        return fileName.equalsIgnoreCase(name);
+        return isIgnoreCase
+                ? fileName.equalsIgnoreCase(name)
+                : fileName.equals(name);
     }
 
     public static class ReadmeHelper {

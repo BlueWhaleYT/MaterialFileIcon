@@ -23,7 +23,7 @@ class GitDetector {
     }
 
     protected static boolean isGitIgnoreFile(String filePath) {
-        return new FileEnvironmentHelper(filePath).isFileHasKeyName(filePath, ".gitignore");
+        return new FileEnvironmentHelper(filePath).isFileHasKeyName(filePath, ".gitignore", true, true);
     }
 
 }

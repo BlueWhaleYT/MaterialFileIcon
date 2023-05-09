@@ -67,6 +67,14 @@ public class FileIconHelper {
             else if (fileEnvHelper.android().isAndroidDevDirectory()) fileIconRes = R.drawable.ic_material_folder_android;
 
             else if (fileEnvHelper.git().isGitDirectory()) fileIconRes = R.drawable.ic_material_folder_git;
+
+            else if (fileEnvHelper.isJavaDirectory()) fileIconRes = R.drawable.ic_material_folder_java;
+
+            else if (fileEnvHelper.isDownloadDirectory()) fileIconRes = R.drawable.ic_material_folder_download;
+            else if (fileEnvHelper.isSrcDirectory()) fileIconRes = R.drawable.ic_material_folder_src;
+            else if (fileEnvHelper.isPublicDirectory()) fileIconRes = R.drawable.ic_material_folder_public;
+            else if (fileEnvHelper.isAppDirectory()) fileIconRes = R.drawable.ic_material_folder_app;
+
             else {
                 if (FileUtil.isFileHidden(fileName)) {
                     fileIconRes = R.drawable.ic_material_folder_secure;
@@ -274,6 +282,7 @@ public class FileIconHelper {
         if (fileEnvHelper.readme().isReadmeFile()) fileIconRes = R.drawable.ic_material_readme;
         else if (fileEnvHelper.git().isGitIgnoreFile()) fileIconRes = R.drawable.ic_material_git;
         else if (fileEnvHelper.isLicenseFile()) fileIconRes = R.drawable.ic_material_certificate;
+        else if (FileUtil.isFileHidden(filePath)) fileIconRes = R.drawable.ic_material_lock;
 
     }
 
