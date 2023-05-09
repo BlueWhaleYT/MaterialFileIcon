@@ -4,9 +4,13 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bluewhaleyt.common.IntentUtil;
+import com.bluewhaleyt.crashdebugger.CrashDebugger;
+import com.bluewhaleyt.filemanagement.FileUtil;
 import com.bluewhaleyt.materialfileicon.core.FileIconHelper;
 import com.bluewhaleyt.materialfileicon.databinding.ActivityMainBinding;
 
@@ -19,10 +23,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        CrashDebugger.init(this);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.etFilePath.setText(Environment.getExternalStorageDirectory() + "/");
+        binding.etFilePath.setText(FileUtil.getExternalStoragePath());
         check(binding.etFilePath.getText().toString());
     }
 
@@ -49,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
                 check(s.toString());
             }
         });
+
+        binding.btnBrowse.setOnClickListener(v -> browse(binding.etFilePath.getText().toString()));
     }
 
     private void check(String filePath) {
@@ -63,5 +70,18 @@ public class MainActivity extends AppCompatActivity {
 
         if (file.exists()) inputLayout.setErrorEnabled(false);
         else inputLayout.setError(getString(R.string.invalid_file_path));
+    }
+
+    private void browse(String filePath) {
+        if (FileUtil.isFileExist(filePath)) {
+            IntentUtil.intentPutString(
+                    this,
+                    FileListActivity.class,
+                    "filePath",
+                    filePath
+            );
+        } else {
+            Toast.makeText(this, getString(R.string.invalid_file_path), Toast.LENGTH_SHORT).show();
+        }
     }
 }

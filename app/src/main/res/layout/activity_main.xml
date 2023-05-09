@@ -18,7 +18,7 @@
         android:id="@+id/input_layout_file_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp">
+        android:layout_marginBottom="10dp">
 
         <EditText
             android:id="@+id/et_file_path"
@@ -27,5 +27,11 @@
             android:hint="@string/file_path"/>
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_browse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="go to directory"/>
 
 </LinearLayout>
