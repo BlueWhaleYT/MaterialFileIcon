@@ -2,9 +2,9 @@ package com.bluewhaleyt.materialfileicon.core.environment;
 
 import java.io.File;
 
-public class GitDetector {
+class GitDetector {
 
-    public static boolean isGitDirectory(String dirPath) {
+    protected static boolean isGitDirectory(String dirPath) {
         File file = new File(dirPath);
         if (!file.isDirectory()) {
             return false;
@@ -13,7 +13,7 @@ public class GitDetector {
         return gitDir.exists() && gitDir.isDirectory();
     }
 
-    public static boolean isGitFile(String filePath) {
+    protected static boolean isGitFile(String filePath) {
         File file = new File(filePath);
         if (!file.exists() || file.isDirectory()) {
             return false;

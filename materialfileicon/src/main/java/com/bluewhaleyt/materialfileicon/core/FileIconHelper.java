@@ -81,10 +81,8 @@ public class FileIconHelper {
 
     private void apply() {
         var fileExt = "";
-        var fileName = "";
         if (!filePath.equals("")) {
             fileExt = FileUtil.getFileExtensionOfPath(filePath.toLowerCase());
-            fileName = FileUtil.getFileNameOfPath(filePath);
         }
 
         switch (fileExt) {
@@ -247,11 +245,8 @@ public class FileIconHelper {
                 fileIconRes = R.drawable.ic_material_document;
         }
 
-//        switch (fileName) {
-//            case "README.md":
-//                fileIconRes = R.drawable.ic_material_readme;
-//                break;
-//        }
+        if (fileEnvHelper.readme().isReadmeFile()) fileIconRes = R.drawable.ic_material_readme;
+        else if (fileEnvHelper.isLicenseFile()) fileIconRes = R.drawable.ic_material_certificate;
 
     }
 

@@ -1,5 +1,7 @@
 package com.bluewhaleyt.materialfileicon.core.environment;
 
+import java.io.File;
+
 public class FileEnvironmentHelper {
 
     private String filePath;
@@ -10,6 +12,10 @@ public class FileEnvironmentHelper {
 
     public String getFilePath() {
         return filePath;
+    }
+
+    public ReadmeHelper readme() {
+        return new ReadmeHelper(this);
     }
 
     public GitHelper git() {
@@ -30,6 +36,31 @@ public class FileEnvironmentHelper {
 
     public AndroidDevHelper android() {
         return new AndroidDevHelper(this);
+    }
+
+    public boolean isLicenseFile() {
+        return isFileHasKeyRegex(filePath, "(?i)license(\\.(txt|md))?");
+    }
+
+    private boolean isFileHasKeyRegex(String filePath, String regex) {
+        File file = new File(filePath);
+        if (file.isDirectory()) {
+            return false;
+        }
+        String fileName = file.getName();
+        return fileName.matches(regex);
+    }
+
+    public static class ReadmeHelper {
+        private FileEnvironmentHelper instance;
+
+        public ReadmeHelper(FileEnvironmentHelper instance) {
+            this.instance = instance;
+        }
+
+        public boolean isReadmeFile() {
+            return ReadmeDetector.isReadmeFile(instance.filePath);
+        }
     }
 
     public static class NodejsHelper {

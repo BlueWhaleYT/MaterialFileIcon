@@ -53,9 +53,6 @@ public class FileListActivity extends AppCompatActivity {
         List<FileItem> fileItems = FileListAdapter.getFileItems(mCurrentPath);
         adapter = new FileListAdapter(fileItems);
         binding.rvFileList.setAdapter(adapter);
-        adapter = new FileListAdapter(fileItems);
-        binding.rvFileList.setAdapter(adapter);
-
 
         adapter.setOnItemClickListener(item -> {
             if (item.isDirectory()) {

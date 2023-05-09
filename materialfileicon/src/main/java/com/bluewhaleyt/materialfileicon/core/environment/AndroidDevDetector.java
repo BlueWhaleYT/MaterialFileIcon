@@ -7,9 +7,9 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class AndroidDevDetector {
+class AndroidDevDetector {
 
-    public static boolean isAndroidDevDirectory(String dirPath) {
+    protected static boolean isAndroidDevDirectory(String dirPath) {
         File file = new File(dirPath);
         if (!file.isDirectory()) {
             return false;
@@ -21,7 +21,7 @@ public class AndroidDevDetector {
         return manifestFile.exists() && manifestFile.isFile();
     }
 
-    public static boolean isAndroidDevJavaFile(String filePath) {
+    protected static boolean isAndroidDevJavaFile(String filePath) {
         File file = new File(filePath);
         if (!file.exists() || file.isDirectory()) {
             return false;
@@ -43,7 +43,7 @@ public class AndroidDevDetector {
         return false;
     }
 
-    private static boolean isAndroidDevJavaCode(String codeLine) {
+    protected static boolean isAndroidDevJavaCode(String codeLine) {
         Pattern pattern = Pattern.compile("import\\sandroid\\.");
         Matcher matcher = pattern.matcher(codeLine);
         return matcher.find();
