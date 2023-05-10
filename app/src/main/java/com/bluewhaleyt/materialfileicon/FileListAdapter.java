@@ -69,7 +69,7 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.FileVi
         holder.imgIcon.setImageResource(item.getIcon());
 
         var context = holder.itemView.getContext();
-        var alpha = CommonUtil.isInDarkMode(context) ? 40 : 20;
+        var alpha = 20;
         var color = Utils.getDominantColor(holder.imgIcon.getDrawable());
         var gd = new GradientDrawable();
         gd.setColor(ColorUtils.setAlphaComponent(color, alpha));

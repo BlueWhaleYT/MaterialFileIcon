@@ -7,6 +7,8 @@ import com.bluewhaleyt.filemanagement.SAFUtil;
 import com.bluewhaleyt.materialfileicon.R;
 import com.bluewhaleyt.materialfileicon.core.environment.FileEnvironmentHelper;
 
+import org.apache.commons.io.FileUtils;
+
 public class FileIconHelper {
 
     private String filePath;
@@ -14,6 +16,7 @@ public class FileIconHelper {
 
     private int fileIconRes;
 
+    private FileHelper fileHelper;
     private FileEnvironmentHelper fileEnvHelper;
 
     public FileIconHelper(String filePath) {
@@ -53,6 +56,7 @@ public class FileIconHelper {
     }
 
     private void check() {
+        fileHelper = new FileHelper(filePath);
         fileEnvHelper = new FileEnvironmentHelper(filePath);
 
         if (mimeType == null) mimeType = "";
@@ -88,196 +92,74 @@ public class FileIconHelper {
     }
 
     private void apply() {
-        var fileExt = "";
-        if (!filePath.equals("")) {
-            fileExt = FileUtil.getFileExtensionOfPath(filePath.toLowerCase());
+        fileIconRes = R.drawable.ic_material_document;
+
+        if (fileHelper.isCompressFiles()) fileIconRes = R.drawable.ic_material_zip;
+        else if (fileHelper.isBitmapFiles()) fileIconRes = R.drawable.ic_material_image;
+        else if (fileHelper.isVectorFiles()) fileIconRes = R.drawable.ic_material_svg;
+        else if (fileHelper.isVideoFiles()) fileIconRes = R.drawable.ic_material_video;
+        else if (fileHelper.isAudioFiles()) fileIconRes = R.drawable.ic_material_audio;
+        else if (fileHelper.isFontFiles()) fileIconRes = R.drawable.ic_material_font;
+        else if (fileHelper.isMicrosoftWordFiles()) fileIconRes = R.drawable.ic_material_word;
+        else if (fileHelper.isGradleFiles()) fileIconRes = R.drawable.ic_material_gradle;
+        else if (fileHelper.isTestJsFiles()) fileIconRes = R.drawable.ic_material_test_js;
+        else if (fileHelper.isMinecraftRelatedFiles()) fileIconRes = R.drawable.ic_material_minecraft;
+
+        else if (fileHelper.equals("apk")) fileIconRes = R.drawable.ic_material_android;
+        else if (fileHelper.equals("pdf")) fileIconRes = R.drawable.ic_material_pdf;
+        else if (fileHelper.equals("ppt")) fileIconRes = R.drawable.ic_material_powerpoint;
+
+        else if (fileHelper.equals("as")) fileIconRes = R.drawable.ic_material_actionscript;
+
+        else if (fileHelper.equals("bat")) fileIconRes = R.drawable.ic_material_console;
+
+        else if (fileHelper.equals("c")) fileIconRes = R.drawable.ic_material_c;
+        else if (fileHelper.equals("cpp")) fileIconRes = R.drawable.ic_material_cpp;
+        else if (fileHelper.equals("csharp")) fileIconRes = R.drawable.ic_material_csharp;
+        else if (fileHelper.equals("class")) fileIconRes = R.drawable.ic_material_javaclass;
+        else if (fileHelper.equals("css")) fileIconRes = R.drawable.ic_material_css;
+
+        else if (fileHelper.equals("dart")) fileIconRes = R.drawable.ic_material_dart;
+
+        else if (fileHelper.equals("go")) fileIconRes = R.drawable.ic_material_go;
+        else if (fileHelper.equals("groovy") || fileHelper.equals("gvy") || fileHelper.equals("gy") || fileHelper.equals("gsh")) fileIconRes = R.drawable.ic_material_groovy;
+
+        else if (fileHelper.equals("htm") || fileHelper.equals("html")) fileIconRes = R.drawable.ic_material_html;
+
+        else if (fileHelper.equals("java")) fileIconRes = R.drawable.ic_material_java;
+        else if (fileHelper.equals("js")) {
+            if (fileEnvHelper.nodejs().isNodeJsFile()) fileIconRes = R.drawable.ic_material_nodejs;
+            else if (fileEnvHelper.react().isReactFile()) fileIconRes = R.drawable.ic_material_react;
+            else fileIconRes = R.drawable.ic_material_javascript;
+        }
+        else if (fileHelper.equals("json")) {
+            if (fileEnvHelper.isNpmPackageJson()) fileIconRes = R.drawable.ic_material_npm;
+            else fileIconRes = R.drawable.ic_material_json;
         }
 
-        switch (fileExt) {
-            // compress files
-            case "7z":
-            case "rar":
-            case "tar":
-            case "tar.xz":
-            case "zip":
-                fileIconRes = R.drawable.ic_material_zip;
-                break;
+        else if (fileHelper.equals("kt")) fileIconRes = R.drawable.ic_material_kotlin;
 
-            // image files
-            case "bmp":
-            case "jpg":
-            case "jpeg":
-            case "png":
-            case "gif":
-            case "tiff":
-            case "webp":
-                fileIconRes = R.drawable.ic_material_image;
-                break;
-            case "ai":
-            case "swf":
-            case "svg":
-                fileIconRes = R.drawable.ic_material_svg;
-                break;
+        else if (fileHelper.equals("less")) fileIconRes = R.drawable.ic_material_less;
+        else if (fileHelper.equals("log")) fileIconRes = R.drawable.ic_material_log;
+        else if (fileHelper.equals("lua")) fileIconRes = R.drawable.ic_material_lua;
 
-            // video files
-            case "mp4":
-            case "mov":
-            case "wmv":
-            case "avi":
-            case "webm":
-            case "mkv":
-            case "flv":
-                fileIconRes = R.drawable.ic_material_video;
-                break;
+        else if (fileHelper.equals("md")) fileIconRes = R.drawable.ic_material_markdown;
+        else if (fileHelper.equals("mdx")) fileIconRes = R.drawable.ic_material_mdx;
 
-            // font files
-            case "otf":
-            case "ttc":
-            case "ttf":
-                fileIconRes = R.drawable.ic_material_font;
-                break;
+        else if (fileHelper.equals("pas")) fileIconRes = R.drawable.ic_material_pascal;
+        else if (fileHelper.equals("php")) fileIconRes = R.drawable.ic_material_php;
+        else if (fileHelper.equals("py")) fileIconRes = R.drawable.ic_material_python;
+        else if (fileHelper.equals("pug")) fileIconRes = R.drawable.ic_material_pug;
 
-            // text files
-            case "as":
-                fileIconRes = R.drawable.ic_material_actionscript;
-                break;
-            case "bat":
-                fileIconRes = R.drawable.ic_material_console;
-                break;
-            case "c":
-                fileIconRes = R.drawable.ic_material_c;
-                break;
-            case "class":
-                fileIconRes = R.drawable.ic_material_javaclass;
-                break;
-            case "cpp":
-                fileIconRes = R.drawable.ic_material_cpp;
-                break;
-            case "csharp":
-                fileIconRes = R.drawable.ic_material_csharp;
-                break;
-            case "css":
-                fileIconRes = R.drawable.ic_material_css;
-                break;
-            case "dart":
-                fileIconRes = R.drawable.ic_material_dart;
-                break;
-            case "doc":
-            case "docs":
-            case "docx":
-                fileIconRes = R.drawable.ic_material_word;
-                break;
-            case "go":
-                fileIconRes = R.drawable.ic_material_go;
-                break;
-            case "gradle":
-            case "gradle.kts":
-                fileIconRes = R.drawable.ic_material_gradle;
-                break;
-            case "groovy":
-            case "gvy":
-            case "gy":
-            case "gsh":
-                fileIconRes = R.drawable.ic_material_groovy;
-                break;
-            case "htm":
-            case "html":
-                if (fileEnvHelper.angularjs().isAngularJsFile()) fileIconRes = R.drawable.ic_material_angular;
-                else fileIconRes = R.drawable.ic_material_html;
-                break;
-            case "java":
-                fileIconRes = R.drawable.ic_material_java;
-                break;
-            case "js":
-                if (fileEnvHelper.nodejs().isNodeJsFile()) fileIconRes = R.drawable.ic_material_nodejs;
-                else if (fileEnvHelper.react().isReactFile()) fileIconRes = R.drawable.ic_material_react;
-                else fileIconRes = R.drawable.ic_material_javascript;
-                break;
-            case "json":
-                if (fileEnvHelper.nodejs().isNodeJsPackageJsonFile()) fileIconRes = R.drawable.ic_material_nodejs;
-                else if (fileEnvHelper.angularjs().isAngularJsPackageJsonFile()) fileIconRes = R.drawable.ic_material_npm;
-                else if (fileEnvHelper.react().isReactPackageJsonFile()) fileIconRes = R.drawable.ic_material_npm;
-                else fileIconRes = R.drawable.ic_material_json;
-                break;
-            case "kt":
-                fileIconRes = R.drawable.ic_material_kotlin;
-                break;
-            case "less":
-                fileIconRes = R.drawable.ic_material_less;
-                break;
-            case "log":
-                fileIconRes = R.drawable.ic_material_log;
-                break;
-            case "lua":
-                fileIconRes = R.drawable.ic_material_lua;
-                break;
-            case "md":
-                fileIconRes = R.drawable.ic_material_markdown;
-                break;
-            case "mdx":
-                fileIconRes = R.drawable.ic_material_mdx;
-                break;
-            case "pas":
-                fileIconRes = R.drawable.ic_material_pascal;
-                break;
-            case "pdf":
-                fileIconRes = R.drawable.ic_material_pdf;
-                break;
-            case "ppt":
-                fileIconRes = R.drawable.ic_material_powerpoint;
-                break;
-            case "php":
-                fileIconRes = R.drawable.ic_material_php;
-                break;
-            case "pug":
-                fileIconRes = R.drawable.ic_material_pug;
-                break;
-            case "py":
-                fileIconRes = R.drawable.ic_material_python;
-                break;
-            case "sass":
-            case "scss":
-                fileIconRes = R.drawable.ic_material_sass;
-                break;
-            case "sql":
-                fileIconRes = R.drawable.ic_material_database;
-                break;
-            case "stylus":
-                fileIconRes = R.drawable.ic_material_stylus;
-                break;
-            case "swift":
-                fileIconRes = R.drawable.ic_material_swift;
-                break;
-            case "test.js":
-                fileIconRes = R.drawable.ic_material_test_js;
-                break;
-            case "ts":
-                if (fileEnvHelper.react().isReactFile()) fileIconRes = R.drawable.ic_material_react_ts;
-                else fileIconRes = R.drawable.ic_material_typescript;
-                break;
-            case "xml":
-            case "xsl":
-                fileIconRes = R.drawable.ic_material_xml;
-                break;
-            case "yaml":
-            case "yml":
-                fileIconRes = R.drawable.ic_material_yaml;
-                break;
+        else if (fileHelper.equals("sass") || fileHelper.equals("sass")) fileIconRes = R.drawable.ic_material_sass;
+        else if (fileHelper.equals("sql")) fileIconRes = R.drawable.ic_material_database;
+        else if (fileHelper.equals("stylus")) fileIconRes = R.drawable.ic_material_stylus;
+        else if (fileHelper.equals("swift")) fileIconRes = R.drawable.ic_material_swift;
 
-            // other files
-            case "apk":
-                fileIconRes = R.drawable.ic_material_android;
-                break;
+        else if (fileHelper.equals("ts")) fileIconRes = R.drawable.ic_material_typescript;
 
-            case "mcworld":
-            case "mcpack":
-            case "mcaddon":
-                fileIconRes = R.drawable.ic_material_minecraft;
-                break;
-
-            default:
-                fileIconRes = R.drawable.ic_material_document;
-        }
+        else if (fileHelper.equals("xml") || fileHelper.equals("xsl")) fileIconRes = R.drawable.ic_material_xml;
+        else if (fileHelper.equals("yml") || fileHelper.equals("yaml")) fileIconRes = R.drawable.ic_material_yaml;
 
         if (fileEnvHelper.readme().isReadmeFile()) fileIconRes = R.drawable.ic_material_readme;
         else if (fileEnvHelper.git().isGitIgnoreFile()) fileIconRes = R.drawable.ic_material_git;

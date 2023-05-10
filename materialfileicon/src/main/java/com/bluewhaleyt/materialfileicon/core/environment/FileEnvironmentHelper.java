@@ -1,13 +1,13 @@
 package com.bluewhaleyt.materialfileicon.core.environment;
 
+import com.bluewhaleyt.materialfileicon.core.FileHelper;
+
 import java.io.File;
 
-public class FileEnvironmentHelper {
-
-    private String filePath;
+public class FileEnvironmentHelper extends FileHelper {
 
     public FileEnvironmentHelper(String filePath) {
-        this.filePath = filePath;
+        super(filePath);
     }
 
     public String getFilePath() {
@@ -36,6 +36,12 @@ public class FileEnvironmentHelper {
 
     public AndroidDevHelper android() {
         return new AndroidDevHelper(this);
+    }
+
+    public boolean isNpmPackageJson() {
+        return nodejs().isNodeJsPackageJsonFile() |
+                angularjs().isAngularJsPackageJsonFile() |
+                react().isReactPackageJsonFile();
     }
 
     public boolean isLicenseFile() {

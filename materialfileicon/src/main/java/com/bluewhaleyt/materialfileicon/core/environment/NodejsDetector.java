@@ -101,9 +101,7 @@ class NodejsDetector {
                     hasNodeModules = devDependencies.has("express") || devDependencies.has("koa");
                 }
             }
-            var hasEntryPoint = json.has("main") && json.getString("main").endsWith(".js");
-
-            return hasDependencies && hasNodeModules && hasEntryPoint;
+            return hasDependencies && hasNodeModules;
         } catch (IOException | JSONException e) {
             e.printStackTrace();
         }

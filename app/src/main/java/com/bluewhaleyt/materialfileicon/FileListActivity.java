@@ -11,6 +11,7 @@ import com.bluewhaleyt.crashdebugger.CrashDebugger;
 import com.bluewhaleyt.filemanagement.FileComparator;
 import com.bluewhaleyt.filemanagement.FileUtil;
 import com.bluewhaleyt.materialfileicon.core.FileIconHelper;
+import com.bluewhaleyt.materialfileicon.core.environment.FileEnvironmentHelper;
 import com.bluewhaleyt.materialfileicon.databinding.ActivityFileListBinding;
 
 import java.io.File;

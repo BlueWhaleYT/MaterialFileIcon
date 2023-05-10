@@ -98,9 +98,7 @@ class ReactDetector {
                     hasReact = devDependencies.has("react") || devDependencies.has("react-dom");
                 }
             }
-            var hasEntryPoint = json.has("main") && json.getString("main").endsWith(".js");
-
-            return hasDependencies && hasReact && hasEntryPoint;
+            return hasDependencies && hasReact;
         } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
