@@ -75,6 +75,10 @@ public class FileIconHelper {
             else if (fileEnvHelper.isJavaDirectory()) fileIconRes = R.drawable.ic_material_folder_java;
 
             else if (fileEnvHelper.isDownloadDirectory()) fileIconRes = R.drawable.ic_material_folder_download;
+            else if (fileEnvHelper.isDCIMDirectory() || fileEnvHelper.isPicturesDirectory()) fileIconRes = R.drawable.ic_material_folder_images;
+            else if (fileEnvHelper.isMusicDirectory() || fileEnvHelper.isNotificationsDirectory()) fileIconRes = R.drawable.ic_material_folder_audio;
+            else if (fileEnvHelper.isMoviesDirectory()) fileIconRes = R.drawable.ic_material_folder_video;
+
             else if (fileEnvHelper.isSrcDirectory()) fileIconRes = R.drawable.ic_material_folder_src;
             else if (fileEnvHelper.isPublicDirectory()) fileIconRes = R.drawable.ic_material_folder_public;
             else if (fileEnvHelper.isAppDirectory()) fileIconRes = R.drawable.ic_material_folder_app;

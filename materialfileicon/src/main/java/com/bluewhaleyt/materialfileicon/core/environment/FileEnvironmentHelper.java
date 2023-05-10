@@ -64,6 +64,38 @@ public class FileEnvironmentHelper extends FileHelper {
         return isFileHasKeyName(filePath, "Download", false, false);
     }
 
+    public boolean isDCIMDirectory() {
+        return isFileHasKeyName(filePath, "DCIM", false, false);
+    }
+
+    public boolean isMoviesDirectory() {
+        return isFileHasKeyName(filePath, "Movies", false, false);
+    }
+
+    public boolean isMusicDirectory() {
+        return isFileHasKeyName(filePath, "Music", false, false);
+    }
+
+    public boolean isNotificationsDirectory() {
+        return isFileHasKeyName(filePath, "Notifications", false, false);
+    }
+
+    public boolean isPicturesDirectory() {
+        return isFileHasKeyName(filePath, "Pictures", false, false);
+    }
+
+    public boolean isRingtonesDirectory() {
+        return isFileHasKeyName(filePath, "Ringtones", false, false);
+    }
+
+    public boolean isPodcastsDirectory() {
+        return isFileHasKeyName(filePath, "Podcasts", false, false);
+    }
+
+    public boolean isAlarmsDirectory() {
+        return isFileHasKeyName(filePath, "Alarms", false, false);
+    }
+
     public boolean isJavaDirectory() {
         return isFileHasKeyName(filePath, "java", false, true);
     }

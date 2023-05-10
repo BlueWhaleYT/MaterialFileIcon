@@ -1,5 +1,7 @@
 package com.bluewhaleyt.materialfileicon.core;
 
+import android.os.Environment;
+
 import com.bluewhaleyt.filemanagement.FileUtil;
 
 import org.apache.commons.io.FileUtils;
@@ -7,6 +9,18 @@ import org.apache.commons.io.FileUtils;
 public class FileHelper {
 
     public String filePath;
+
+    public static String[] ANDROID_DEFAULT_DIRS = {
+            Environment.DIRECTORY_MUSIC,
+            Environment.DIRECTORY_PODCASTS,
+            Environment.DIRECTORY_RINGTONES,
+            Environment.DIRECTORY_ALARMS,
+            Environment.DIRECTORY_NOTIFICATIONS,
+            Environment.DIRECTORY_PICTURES,
+            Environment.DIRECTORY_MOVIES,
+            Environment.DIRECTORY_DOWNLOADS,
+            Environment.DIRECTORY_DCIM
+    };
 
     public static String[] COMPRESS_FILES = {"7z", "rar", "tar", "zip"};
 
@@ -47,9 +61,14 @@ public class FileHelper {
 
     public boolean isFiles(String[] types) {
         for (String ext : types) {
-            if (ext.equals(getFileExtension())) {
-                return true;
-            }
+            if (ext.equals(getFileExtension())) return true;
+        }
+        return false;
+    }
+
+    public boolean isAndroidDefaultDirectories(String folderName) {
+        for (String dir : ANDROID_DEFAULT_DIRS) {
+            if (folderName.equalsIgnoreCase(dir)) return true;
         }
         return false;
     }
