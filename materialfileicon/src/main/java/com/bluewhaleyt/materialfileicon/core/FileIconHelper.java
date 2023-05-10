@@ -151,7 +151,7 @@ public class FileIconHelper {
         else if (fileHelper.equals("py")) fileIconRes = R.drawable.ic_material_python;
         else if (fileHelper.equals("pug")) fileIconRes = R.drawable.ic_material_pug;
 
-        else if (fileHelper.equals("sass") || fileHelper.equals("sass")) fileIconRes = R.drawable.ic_material_sass;
+        else if (fileHelper.equals("sass") || fileHelper.equals("scss")) fileIconRes = R.drawable.ic_material_sass;
         else if (fileHelper.equals("sql")) fileIconRes = R.drawable.ic_material_database;
         else if (fileHelper.equals("stylus")) fileIconRes = R.drawable.ic_material_stylus;
         else if (fileHelper.equals("swift")) fileIconRes = R.drawable.ic_material_swift;
