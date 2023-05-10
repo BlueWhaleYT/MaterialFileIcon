@@ -128,7 +128,10 @@ public class FileIconHelper {
         else if (fileHelper.equals("go")) fileIconRes = R.drawable.ic_material_go;
         else if (fileHelper.equals("groovy") || fileHelper.equals("gvy") || fileHelper.equals("gy") || fileHelper.equals("gsh")) fileIconRes = R.drawable.ic_material_groovy;
 
-        else if (fileHelper.equals("htm") || fileHelper.equals("html")) fileIconRes = R.drawable.ic_material_html;
+        else if (fileHelper.equals("htm") || fileHelper.equals("html")) {
+            if (fileEnvHelper.angularjs().isAngularJsFile()) fileIconRes = R.drawable.ic_material_angular;
+            else fileIconRes = R.drawable.ic_material_html;
+        }
 
         else if (fileHelper.equals("java")) fileIconRes = R.drawable.ic_material_java;
         else if (fileHelper.equals("js")) {
@@ -138,6 +141,7 @@ public class FileIconHelper {
         }
         else if (fileHelper.equals("json")) {
             if (fileEnvHelper.isNpmPackageJson()) fileIconRes = R.drawable.ic_material_npm;
+            else if (fileEnvHelper.react().isReactFile()) fileIconRes = R.drawable.ic_material_react;
             else fileIconRes = R.drawable.ic_material_json;
         }
 
@@ -160,7 +164,10 @@ public class FileIconHelper {
         else if (fileHelper.equals("stylus")) fileIconRes = R.drawable.ic_material_stylus;
         else if (fileHelper.equals("swift")) fileIconRes = R.drawable.ic_material_swift;
 
-        else if (fileHelper.equals("ts")) fileIconRes = R.drawable.ic_material_typescript;
+        else if (fileHelper.equals("ts")) {
+            if (fileEnvHelper.react().isReactFile()) fileIconRes = R.drawable.ic_material_react_ts;
+            else fileIconRes = R.drawable.ic_material_typescript;
+        }
 
         else if (fileHelper.equals("xml") || fileHelper.equals("xsl")) fileIconRes = R.drawable.ic_material_xml;
         else if (fileHelper.equals("yml") || fileHelper.equals("yaml")) fileIconRes = R.drawable.ic_material_yaml;
