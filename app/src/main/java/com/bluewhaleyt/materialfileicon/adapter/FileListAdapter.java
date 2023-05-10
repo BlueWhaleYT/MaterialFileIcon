@@ -1,6 +1,5 @@
-package com.bluewhaleyt.materialfileicon;
+package com.bluewhaleyt.materialfileicon.adapter;
 
-import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,12 +12,13 @@ import androidx.annotation.NonNull;
 import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bluewhaleyt.common.CommonUtil;
 import com.bluewhaleyt.common.DateTimeFormatUtil;
 import com.bluewhaleyt.common.DynamicColorsUtil;
 import com.bluewhaleyt.filemanagement.FileUtil;
+import com.bluewhaleyt.materialfileicon.R;
 import com.bluewhaleyt.materialfileicon.core.FileHelper;
 import com.bluewhaleyt.materialfileicon.core.FileIconHelper;
+import com.bluewhaleyt.materialfileicon.model.FileItem;
 import com.bluewhaleyt.materialfileicon.utils.Utils;
 import com.bluewhaleyt.unit.UnitUtil;
 

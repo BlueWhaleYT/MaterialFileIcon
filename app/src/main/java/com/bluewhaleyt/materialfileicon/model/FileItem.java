@@ -1,4 +1,4 @@
-package com.bluewhaleyt.materialfileicon;
+package com.bluewhaleyt.materialfileicon.model;
 
 public class FileItem {
     private String name;

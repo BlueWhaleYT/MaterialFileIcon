@@ -7,8 +7,6 @@ import com.bluewhaleyt.filemanagement.SAFUtil;
 import com.bluewhaleyt.materialfileicon.R;
 import com.bluewhaleyt.materialfileicon.core.environment.FileEnvironmentHelper;
 
-import org.apache.commons.io.FileUtils;
-
 public class FileIconHelper {
 
     private String filePath;
@@ -83,6 +81,9 @@ public class FileIconHelper {
             else if (fileEnvHelper.isPublicDirectory()) fileIconRes = R.drawable.ic_material_folder_public;
             else if (fileEnvHelper.isAppDirectory()) fileIconRes = R.drawable.ic_material_folder_app;
 
+            else if (fileEnvHelper.isIntelliJDirectory()) fileIconRes = R.drawable.ic_material_folder_intellij;
+            else if (fileEnvHelper.isGradleJDirectory()) fileIconRes = R.drawable.ic_material_folder_gradle;
+
             else {
                 if (FileUtil.isFileHidden(fileName)) {
                     fileIconRes = R.drawable.ic_material_folder_secure;
@@ -106,77 +107,86 @@ public class FileIconHelper {
         else if (fileHelper.isFontFiles()) fileIconRes = R.drawable.ic_material_font;
         else if (fileHelper.isMicrosoftWordFiles()) fileIconRes = R.drawable.ic_material_word;
         else if (fileHelper.isGradleFiles()) fileIconRes = R.drawable.ic_material_gradle;
+        else if (fileHelper.isYarnFiles()) fileIconRes = R.drawable.ic_material_yarn;
         else if (fileHelper.isTestJsFiles()) fileIconRes = R.drawable.ic_material_test_js;
         else if (fileHelper.isMinecraftRelatedFiles()) fileIconRes = R.drawable.ic_material_minecraft;
 
-        else if (fileHelper.equals("apk")) fileIconRes = R.drawable.ic_material_android;
-        else if (fileHelper.equals("pdf")) fileIconRes = R.drawable.ic_material_pdf;
-        else if (fileHelper.equals("ppt")) fileIconRes = R.drawable.ic_material_powerpoint;
+        else if (is("apk")) fileIconRes = R.drawable.ic_material_android;
+        else if (is("pdf")) fileIconRes = R.drawable.ic_material_pdf;
+        else if (is("ppt")) fileIconRes = R.drawable.ic_material_powerpoint;
 
-        else if (fileHelper.equals("as")) fileIconRes = R.drawable.ic_material_actionscript;
+        else if (is("as")) fileIconRes = R.drawable.ic_material_actionscript;
 
-        else if (fileHelper.equals("bat")) fileIconRes = R.drawable.ic_material_console;
+        else if (is("bat")) fileIconRes = R.drawable.ic_material_console;
 
-        else if (fileHelper.equals("c")) fileIconRes = R.drawable.ic_material_c;
-        else if (fileHelper.equals("cpp")) fileIconRes = R.drawable.ic_material_cpp;
-        else if (fileHelper.equals("csharp")) fileIconRes = R.drawable.ic_material_csharp;
-        else if (fileHelper.equals("class")) fileIconRes = R.drawable.ic_material_javaclass;
-        else if (fileHelper.equals("css")) fileIconRes = R.drawable.ic_material_css;
+        else if (is("c")) fileIconRes = R.drawable.ic_material_c;
+        else if (is("cpp")) fileIconRes = R.drawable.ic_material_cpp;
+        else if (is("csharp")) fileIconRes = R.drawable.ic_material_csharp;
+        else if (is("class")) fileIconRes = R.drawable.ic_material_javaclass;
+        else if (is("css")) fileIconRes = R.drawable.ic_material_css;
 
-        else if (fileHelper.equals("dart")) fileIconRes = R.drawable.ic_material_dart;
+        else if (is("dart")) fileIconRes = R.drawable.ic_material_dart;
+        else if (is("diff")) fileIconRes = R.drawable.ic_material_diff;
 
-        else if (fileHelper.equals("go")) fileIconRes = R.drawable.ic_material_go;
-        else if (fileHelper.equals("groovy") || fileHelper.equals("gvy") || fileHelper.equals("gy") || fileHelper.equals("gsh")) fileIconRes = R.drawable.ic_material_groovy;
+        else if (is("go")) fileIconRes = R.drawable.ic_material_go;
+        else if (is("groovy") || is("gvy") || is("gy") || is("gsh")) fileIconRes = R.drawable.ic_material_groovy;
 
-        else if (fileHelper.equals("htm") || fileHelper.equals("html")) {
+        else if (is("htm") || is("html")) {
             if (fileEnvHelper.angularjs().isAngularJsFile()) fileIconRes = R.drawable.ic_material_angular;
             else fileIconRes = R.drawable.ic_material_html;
         }
 
-        else if (fileHelper.equals("java")) fileIconRes = R.drawable.ic_material_java;
-        else if (fileHelper.equals("js")) {
+        else if (is("jar")) fileIconRes = R.drawable.ic_material_jar;
+        else if (is("java")) fileIconRes = R.drawable.ic_material_java;
+        else if (is("js")) {
             if (fileEnvHelper.nodejs().isNodeJsFile()) fileIconRes = R.drawable.ic_material_nodejs;
             else if (fileEnvHelper.react().isReactFile()) fileIconRes = R.drawable.ic_material_react;
             else fileIconRes = R.drawable.ic_material_javascript;
         }
-        else if (fileHelper.equals("json")) {
+        else if (is("json")) {
             if (fileEnvHelper.isNpmPackageJson()) fileIconRes = R.drawable.ic_material_npm;
             else if (fileEnvHelper.react().isReactFile()) fileIconRes = R.drawable.ic_material_react;
             else fileIconRes = R.drawable.ic_material_json;
         }
 
-        else if (fileHelper.equals("kt")) fileIconRes = R.drawable.ic_material_kotlin;
+        else if (is("kt")) fileIconRes = R.drawable.ic_material_kotlin;
 
-        else if (fileHelper.equals("less")) fileIconRes = R.drawable.ic_material_less;
-        else if (fileHelper.equals("log")) fileIconRes = R.drawable.ic_material_log;
-        else if (fileHelper.equals("lua")) fileIconRes = R.drawable.ic_material_lua;
+        else if (is("less")) fileIconRes = R.drawable.ic_material_less;
+        else if (is("log")) fileIconRes = R.drawable.ic_material_log;
+        else if (is("lua")) fileIconRes = R.drawable.ic_material_lua;
 
-        else if (fileHelper.equals("md")) fileIconRes = R.drawable.ic_material_markdown;
-        else if (fileHelper.equals("mdx")) fileIconRes = R.drawable.ic_material_mdx;
+        else if (is("md")) fileIconRes = R.drawable.ic_material_markdown;
+        else if (is("mdx")) fileIconRes = R.drawable.ic_material_mdx;
 
-        else if (fileHelper.equals("pas")) fileIconRes = R.drawable.ic_material_pascal;
-        else if (fileHelper.equals("php")) fileIconRes = R.drawable.ic_material_php;
-        else if (fileHelper.equals("py")) fileIconRes = R.drawable.ic_material_python;
-        else if (fileHelper.equals("pug")) fileIconRes = R.drawable.ic_material_pug;
+        else if (is("pas")) fileIconRes = R.drawable.ic_material_pascal;
+        else if (is("php")) fileIconRes = R.drawable.ic_material_php;
+        else if (is("py")) fileIconRes = R.drawable.ic_material_python;
+        else if (is("pug")) fileIconRes = R.drawable.ic_material_pug;
+        else if (is("properties")) fileIconRes = R.drawable.ic_material_settings;
 
-        else if (fileHelper.equals("sass") || fileHelper.equals("scss")) fileIconRes = R.drawable.ic_material_sass;
-        else if (fileHelper.equals("sql")) fileIconRes = R.drawable.ic_material_database;
-        else if (fileHelper.equals("stylus")) fileIconRes = R.drawable.ic_material_stylus;
-        else if (fileHelper.equals("swift")) fileIconRes = R.drawable.ic_material_swift;
+        else if (is("sass") || is("scss")) fileIconRes = R.drawable.ic_material_sass;
+        else if (is("sql")) fileIconRes = R.drawable.ic_material_database;
+        else if (is("stylus")) fileIconRes = R.drawable.ic_material_stylus;
+        else if (is("swift")) fileIconRes = R.drawable.ic_material_swift;
 
-        else if (fileHelper.equals("ts")) {
+        else if (is("ts")) {
             if (fileEnvHelper.react().isReactFile()) fileIconRes = R.drawable.ic_material_react_ts;
             else fileIconRes = R.drawable.ic_material_typescript;
         }
 
-        else if (fileHelper.equals("xml") || fileHelper.equals("xsl")) fileIconRes = R.drawable.ic_material_xml;
-        else if (fileHelper.equals("yml") || fileHelper.equals("yaml")) fileIconRes = R.drawable.ic_material_yaml;
+        else if (is("xml") || is("xsl")) fileIconRes = R.drawable.ic_material_xml;
+
+        else if (is("yml") || is("yaml")) fileIconRes = R.drawable.ic_material_yaml;
 
         if (fileEnvHelper.readme().isReadmeFile()) fileIconRes = R.drawable.ic_material_readme;
         else if (fileEnvHelper.git().isGitIgnoreFile()) fileIconRes = R.drawable.ic_material_git;
         else if (fileEnvHelper.isLicenseFile()) fileIconRes = R.drawable.ic_material_certificate;
         else if (FileUtil.isFileHidden(filePath)) fileIconRes = R.drawable.ic_material_lock;
 
+    }
+    
+    private boolean is(String str) {
+        return fileHelper.equals(str);
     }
 
 }

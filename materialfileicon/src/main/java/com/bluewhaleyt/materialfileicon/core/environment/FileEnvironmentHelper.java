@@ -1,13 +1,13 @@
 package com.bluewhaleyt.materialfileicon.core.environment;
 
-import com.bluewhaleyt.materialfileicon.core.FileHelper;
-
 import java.io.File;
 
-public class FileEnvironmentHelper extends FileHelper {
+public class FileEnvironmentHelper {
+
+    private String filePath;
 
     public FileEnvironmentHelper(String filePath) {
-        super(filePath);
+        this.filePath = filePath;
     }
 
     public String getFilePath() {
@@ -98,6 +98,14 @@ public class FileEnvironmentHelper extends FileHelper {
 
     public boolean isJavaDirectory() {
         return isFileHasKeyName(filePath, "java", false, true);
+    }
+
+    public boolean isIntelliJDirectory() {
+        return isFileHasKeyName(filePath, ".idea", false, false);
+    }
+
+    public boolean isGradleJDirectory() {
+        return isFileHasKeyName(filePath, "gradle", false, false);
     }
 
     public boolean isFileHasKeyRegex(String filePath, String regex) {

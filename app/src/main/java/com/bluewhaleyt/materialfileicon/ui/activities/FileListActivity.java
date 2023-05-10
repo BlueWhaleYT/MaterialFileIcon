@@ -1,4 +1,4 @@
-package com.bluewhaleyt.materialfileicon;
+package com.bluewhaleyt.materialfileicon.ui.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,16 +8,12 @@ import android.os.Bundle;
 import com.bluewhaleyt.common.IntentUtil;
 import com.bluewhaleyt.common.PermissionUtil;
 import com.bluewhaleyt.crashdebugger.CrashDebugger;
-import com.bluewhaleyt.filemanagement.FileComparator;
 import com.bluewhaleyt.filemanagement.FileUtil;
-import com.bluewhaleyt.materialfileicon.core.FileIconHelper;
-import com.bluewhaleyt.materialfileicon.core.environment.FileEnvironmentHelper;
+import com.bluewhaleyt.materialfileicon.adapter.FileListAdapter;
 import com.bluewhaleyt.materialfileicon.databinding.ActivityFileListBinding;
+import com.bluewhaleyt.materialfileicon.model.FileItem;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class FileListActivity extends AppCompatActivity {

@@ -1,7 +1,6 @@
-package com.bluewhaleyt.materialfileicon;
+package com.bluewhaleyt.materialfileicon.ui.activities;
 
 import android.os.Bundle;
-import android.os.Environment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.Toast;
@@ -11,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bluewhaleyt.common.IntentUtil;
 import com.bluewhaleyt.crashdebugger.CrashDebugger;
 import com.bluewhaleyt.filemanagement.FileUtil;
+import com.bluewhaleyt.materialfileicon.R;
 import com.bluewhaleyt.materialfileicon.core.FileIconHelper;
 import com.bluewhaleyt.materialfileicon.databinding.ActivityMainBinding;
 
@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         binding.btnBrowse.setOnClickListener(v -> browse(binding.etFilePath.getText().toString()));
+        binding.btnIconList.setOnClickListener(v -> IntentUtil.intent(this, IconListActivity.class));
     }
 
     private void check(String filePath) {

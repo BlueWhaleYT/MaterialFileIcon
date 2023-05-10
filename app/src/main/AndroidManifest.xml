@@ -16,14 +16,21 @@
         android:theme="@style/Theme.MaterialFileIcon"
         tools:targetApi="31">
         <activity
-            android:name=".FileListActivity"
+            android:name=".ui.activities.IconListActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.activities.FileListActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

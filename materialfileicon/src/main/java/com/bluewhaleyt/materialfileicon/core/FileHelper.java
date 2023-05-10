@@ -3,10 +3,13 @@ package com.bluewhaleyt.materialfileicon.core;
 import android.os.Environment;
 
 import com.bluewhaleyt.filemanagement.FileUtil;
+import com.bluewhaleyt.materialfileicon.core.environment.FileEnvironmentHelper;
 
 import org.apache.commons.io.FileUtils;
 
 public class FileHelper {
+
+    private FileEnvironmentHelper fileEnvHelper;
 
     public String filePath;
 
@@ -39,6 +42,11 @@ public class FileHelper {
 
     public FileHelper(String filePath) {
         this.filePath = filePath;
+        fileEnvHelper = new FileEnvironmentHelper(filePath);
+    }
+
+    public String getFileName() {
+        return FileUtil.getFileNameOfPath(filePath);
     }
 
     public String getFileExtension() {
@@ -104,7 +112,15 @@ public class FileHelper {
 
     public boolean isGradleFiles() {
         if (getFileExtension2().endsWith("gradle.kts")) return true;
+        else if (getFileName().equals("gradlew")) return true;
+        else if (getFileName().equals("gradle.properties")) return true;
+        else if (getFileName().equals("gradle-wrapper.properties")) return true;
+        else if (getFileName().equals("settings.properties")) return true;
         return equals("gradle");
+    }
+
+    public boolean isYarnFiles() {
+        return getFileName().equals("yarn.lock");
     }
 
     public boolean isTestJsFiles() {

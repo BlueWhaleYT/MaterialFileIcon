@@ -34,4 +34,11 @@
         android:layout_height="wrap_content"
         android:text="go to directory"/>
 
+    <Button
+        android:id="@+id/btn_icon_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:text="see supported icons"/>
+
 </LinearLayout>
