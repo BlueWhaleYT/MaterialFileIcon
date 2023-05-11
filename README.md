@@ -16,7 +16,9 @@ coming soon
 ## How to use?
 
 It's simple, just by adding a few codes.
-> Note: The icon to be displayed, depends on the extension name of the file path.
+
+> **Note** <br>
+> The icon to be displayed, depends on the extension name of the file path.
 
 For example, if you file path is:
 ```
