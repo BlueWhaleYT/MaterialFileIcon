@@ -81,7 +81,8 @@ class NodejsDetector {
                 line = reader.readLine();
             }
             var json = new JSONObject(sb.toString());
-            return json.has("dependencies") || json.has("devDependencies");
+            var hasDependencies =  json.has("dependencies") || json.has("devDependencies");
+            return hasDependencies;
         } catch (IOException | JSONException e) {
 
         }

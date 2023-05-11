@@ -62,8 +62,9 @@ public class FileIconHelper {
         if (FileUtil.isDirectory(filePath) || SAFUtil.isDirectory(mimeType)) {
             var fileName = FileUtil.getFileNameOfPath(filePath);
             if (filePath.equals("")) fileIconRes = R.drawable.ic_material_folder;
-            if (fileEnvHelper.nodejs().isNodeJsDirectory()) fileIconRes = R.drawable.ic_material_folder_node;
             else if (fileEnvHelper.angularjs().isAngularJsDirectory()) fileIconRes = R.drawable.ic_material_folder_angular;
+            else if (fileEnvHelper.vuejs().isVueJsDirectory()) fileIconRes = R.drawable.ic_material_folder_vue;
+            else if (fileEnvHelper.nodejs().isNodeJsDirectory()) fileIconRes = R.drawable.ic_material_folder_node;
             else if (fileEnvHelper.react().isReactDirectory()) fileIconRes = R.drawable.ic_material_folder_react_component;
 
             else if (fileEnvHelper.android().isAndroidDevDirectory()) fileIconRes = R.drawable.ic_material_folder_android;
@@ -173,6 +174,8 @@ public class FileIconHelper {
             if (fileEnvHelper.react().isReactFile()) fileIconRes = R.drawable.ic_material_react_ts;
             else fileIconRes = R.drawable.ic_material_typescript;
         }
+
+        else if (is("vue")) fileIconRes = R.drawable.ic_material_vue;
 
         else if (is("xml") || is("xsl")) fileIconRes = R.drawable.ic_material_xml;
 

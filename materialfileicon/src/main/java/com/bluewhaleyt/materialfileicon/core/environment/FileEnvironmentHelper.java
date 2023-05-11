@@ -30,6 +30,10 @@ public class FileEnvironmentHelper {
         return new AngularJsHelper(this);
     }
 
+    public VueJsHelper vuejs() {
+        return new VueJsHelper(this);
+    }
+
     public ReactHelper react() {
         return new ReactHelper(this);
     }
@@ -41,6 +45,7 @@ public class FileEnvironmentHelper {
     public boolean isNpmPackageJson() {
         return nodejs().isNodeJsPackageJsonFile() |
                 angularjs().isAngularJsPackageJsonFile() |
+                vuejs().isVueJsPackageJsonFile() |
                 react().isReactPackageJsonFile();
     }
 
@@ -148,7 +153,8 @@ public class FileEnvironmentHelper {
         }
 
         public boolean isNodeJsFile() {
-            return NodejsDetector.isNodeJsFile(instance.filePath);
+            return NodejsDetector.isNodeJsFile(instance.filePath)
+                    && VueDetector.isVueJsFile(instance.filePath);
         }
 
         public boolean isNodeJsPackageJsonFile() {
@@ -173,6 +179,26 @@ public class FileEnvironmentHelper {
 
         public boolean isAngularJsPackageJsonFile() {
             return AngularJsDetector.isAngularJsPackageJsonFile(instance.filePath);
+        }
+    }
+
+    public static class VueJsHelper {
+        private FileEnvironmentHelper instance;
+
+        public VueJsHelper(FileEnvironmentHelper instance) {
+            this.instance = instance;
+        }
+
+        public boolean isVueJsDirectory() {
+            return VueDetector.isVueJsDirectory(instance.filePath);
+        }
+
+        public boolean isVueJsFile() {
+            return VueDetector.isVueJsFile(instance.filePath);
+        }
+
+        public boolean isVueJsPackageJsonFile() {
+            return VueDetector.isVueJsPackageJsonFile(instance.filePath);
         }
     }
 
