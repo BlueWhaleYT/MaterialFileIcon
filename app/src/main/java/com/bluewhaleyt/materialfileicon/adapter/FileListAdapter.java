@@ -178,6 +178,8 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.FileVi
 
     private static int getIconForFile(File file) {
         var fileIconHelper = new FileIconHelper(file.getAbsolutePath());
+        fileIconHelper.setDynamicFolderEnabled(true);
+        fileIconHelper.setEnvironmentEnabled(true);
         return fileIconHelper.getFileIcon();
     }
 
