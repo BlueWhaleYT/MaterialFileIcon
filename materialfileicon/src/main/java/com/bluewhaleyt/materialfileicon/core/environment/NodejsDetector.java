@@ -50,31 +50,25 @@ class NodejsDetector {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
 
         return false;
     }
 
     protected static boolean isNodeJsFile(String filePath) {
-        String currentDir = new File(filePath).getParent();
-        boolean isNodeJsPackageJson = isNodeJsPackageJsonFile(currentDir + "/package.json");
-        if (!isNodeJsPackageJson) return false;
-
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            String line = reader.readLine();
-            while (line != null) {
+            String line;
+            while ((line = reader.readLine()) != null) {
                 for (String keyword : NODEJS_KEYWORDS) {
                     if (line.contains(keyword)) {
                         return true;
                     }
                 }
-                line = reader.readLine();
             }
         } catch (IOException e) {
-            e.printStackTrace();
-        }
 
+        }
         return false;
     }
 
@@ -86,24 +80,10 @@ class NodejsDetector {
                 sb.append(line);
                 line = reader.readLine();
             }
-
             var json = new JSONObject(sb.toString());
-
-            var hasDependencies = json.has("dependencies") || json.has("devDependencies");
-            var hasNodeModules = false;
-            if (hasDependencies) {
-                var dependencies = json.optJSONObject("dependencies");
-                var devDependencies = json.optJSONObject("devDependencies");
-                if (dependencies != null) {
-                    hasNodeModules = dependencies.has("express") || dependencies.has("koa");
-                }
-                if (!hasNodeModules && devDependencies != null) {
-                    hasNodeModules = devDependencies.has("express") || devDependencies.has("koa");
-                }
-            }
-            return hasDependencies && hasNodeModules;
+            return json.has("dependencies") || json.has("devDependencies");
         } catch (IOException | JSONException e) {
-            e.printStackTrace();
+
         }
 
         return false;

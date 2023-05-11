@@ -38,7 +38,7 @@ class AndroidDevDetector {
                 line = reader.readLine();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+
         }
         return false;
     }

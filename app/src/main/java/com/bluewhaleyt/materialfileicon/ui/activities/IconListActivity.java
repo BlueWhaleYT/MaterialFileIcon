@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.Toast;
 
 import com.bluewhaleyt.debug.SystemResourceUtil;
 import com.bluewhaleyt.materialfileicon.adapter.DrawableResListAdapter;
@@ -31,7 +34,6 @@ public class IconListActivity extends AppCompatActivity {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         binding.rvIconList.setLayoutManager(linearLayoutManager);
-
         showDrawableRes();
     }
 
@@ -50,29 +52,26 @@ public class IconListActivity extends AppCompatActivity {
                     listDrawableRes.add(modelDrawableRes);
                 }
 
-                Comparator<DrawableResModel> comparator = new Comparator<DrawableResModel>() {
-                    @Override
-                    public int compare(DrawableResModel o1, DrawableResModel o2) {
-                        // Check if resource names contain "ic_material_folder_"
-                        boolean o1IsFolder = o1.getDrawableRes().startsWith("ic_material_folder");
-                        boolean o2IsFolder = o2.getDrawableRes().startsWith("ic_material_folder");
+                Comparator<DrawableResModel> comparator = (o1, o2) -> {
+                    // Check if resource names contain "ic_material_folder_"
+                    boolean o1IsFolder = o1.getDrawableRes().startsWith("ic_material_folder");
+                    boolean o2IsFolder = o2.getDrawableRes().startsWith("ic_material_folder");
 
-                        if (o1IsFolder && !o2IsFolder) {
-                            return -1; // o1 comes first
-                        } else if (!o1IsFolder && o2IsFolder) {
-                            return 1; // o2 comes first
-                        } else if (o1IsFolder && o2IsFolder) {
-                            // Both resources are "ic_material_folder" or "ic_material_folder_xxx"
-                            if (o1.getDrawableRes().equals("ic_material_folder")) {
-                                return -1; // "ic_material_folder" comes first
-                            } else if (o2.getDrawableRes().equals("ic_material_folder")) {
-                                return 1; // "ic_material_folder" comes first
-                            } else {
-                                return o1.getDrawableRes().compareTo(o2.getDrawableRes()); // Sort alphabetically
-                            }
+                    if (o1IsFolder && !o2IsFolder) {
+                        return -1; // o1 comes first
+                    } else if (!o1IsFolder && o2IsFolder) {
+                        return 1; // o2 comes first
+                    } else if (o1IsFolder && o2IsFolder) {
+                        // Both resources are "ic_material_folder" or "ic_material_folder_xxx"
+                        if (o1.getDrawableRes().equals("ic_material_folder")) {
+                            return -1; // "ic_material_folder" comes first
+                        } else if (o2.getDrawableRes().equals("ic_material_folder")) {
+                            return 1; // "ic_material_folder" comes first
                         } else {
                             return o1.getDrawableRes().compareTo(o2.getDrawableRes()); // Sort alphabetically
                         }
+                    } else {
+                        return o1.getDrawableRes().compareTo(o2.getDrawableRes()); // Sort alphabetically
                     }
                 };
 

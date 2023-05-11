@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
+    private final String FILE_PATH = FileUtil.getExternalStoragePath() + "/WhaleUtils";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.etFilePath.setText(FileUtil.getExternalStoragePath());
+        binding.etFilePath.setText(FILE_PATH);
         check(binding.etFilePath.getText().toString());
     }
 

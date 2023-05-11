@@ -164,15 +164,15 @@ public class FileEnvironmentHelper {
         }
 
         public boolean isAngularJsDirectory() {
-            return AngularJsDetector.isAngularJSDirectory(instance.filePath);
+            return AngularJsDetector.isAngularJsDirectory(instance.filePath);
         }
 
         public boolean isAngularJsFile() {
-            return AngularJsDetector.isAngularJSFile(instance.filePath);
+            return AngularJsDetector.isAngularJsFile(instance.filePath);
         }
 
         public boolean isAngularJsPackageJsonFile() {
-            return AngularJsDetector.isAngularJSPackageJsonFile(instance.filePath);
+            return AngularJsDetector.isAngularJsPackageJsonFile(instance.filePath);
         }
     }
 

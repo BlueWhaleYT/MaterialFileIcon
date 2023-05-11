@@ -23,8 +23,8 @@ class AngularJsDetector {
             "ng-click"
     };
 
-    protected static boolean isAngularJSDirectory(String dirPath) {
-        boolean hasPackageJson = isAngularJSPackageJsonFile(dirPath + "/package.json");
+    protected static boolean isAngularJsDirectory(String dirPath) {
+        boolean hasPackageJson = isAngularJsPackageJsonFile(dirPath + "/package.json");
         if (!hasPackageJson) return false;
 
         try {
@@ -42,37 +42,35 @@ class AngularJsDetector {
                         }
                     }
                 } else if (current.isFile() && current.getName().endsWith(".html")) {
-                    if (isAngularJSFile(current.getAbsolutePath())) {
+                    if (isAngularJsFile(current.getAbsolutePath())) {
                         return true;
                     }
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
 
         return false;
     }
 
-    protected static boolean isAngularJSFile(String filePath) {
+    protected static boolean isAngularJsFile(String filePath) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            String line = reader.readLine();
-            while (line != null) {
+            String line;
+            while ((line = reader.readLine()) != null) {
                 for (String keyword : ANGULARJS_KEYWORDS) {
                     if (line.contains(keyword)) {
                         return true;
                     }
                 }
-                line = reader.readLine();
             }
         } catch (IOException e) {
-            e.printStackTrace();
-        }
 
+        }
         return false;
     }
 
-    protected static boolean isAngularJSPackageJsonFile(String filePath) {
+    protected static boolean isAngularJsPackageJsonFile(String filePath) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             var sb = new StringBuilder();
             var line = reader.readLine();
@@ -98,7 +96,7 @@ class AngularJsDetector {
 
             return hasDependencies && hasAngular;
         } catch (IOException | JSONException e) {
-            e.printStackTrace();
+
         }
 
         return false;

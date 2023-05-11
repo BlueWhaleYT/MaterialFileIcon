@@ -1,16 +1,15 @@
 package com.bluewhaleyt.materialfileicon.adapter;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bluewhaleyt.component.dialog.DialogUtil;
 import com.bluewhaleyt.materialfileicon.R;
 import com.bluewhaleyt.materialfileicon.model.DrawableResModel;
 
@@ -47,7 +46,7 @@ public class DrawableResListAdapter extends RecyclerView.Adapter<DrawableResList
         return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView stringCount, drawableRes;
         ImageView drawablePreview;
 

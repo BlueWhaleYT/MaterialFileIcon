@@ -47,31 +47,25 @@ class ReactDetector {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
 
         return false;
     }
 
     protected static boolean isReactFile(String filePath) {
-        String currentDir = new File(filePath).getParent();
-        boolean isReactPackageJson = isReactPackageJsonFile(currentDir + "/package.json");
-        if (!isReactPackageJson) return false;
-
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            String line = reader.readLine();
-            while (line != null) {
+            String line;
+            while ((line = reader.readLine()) != null) {
                 for (String keyword : REACT_KEYWORDS) {
                     if (line.contains(keyword)) {
                         return true;
                     }
                 }
-                line = reader.readLine();
             }
         } catch (IOException e) {
-            e.printStackTrace();
-        }
 
+        }
         return false;
     }
 
@@ -100,7 +94,7 @@ class ReactDetector {
             }
             return hasDependencies && hasReact;
         } catch (IOException | JSONException e) {
-            e.printStackTrace();
+
         }
 
         return false;
