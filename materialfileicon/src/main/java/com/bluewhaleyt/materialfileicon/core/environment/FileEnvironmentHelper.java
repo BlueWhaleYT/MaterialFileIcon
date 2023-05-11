@@ -153,8 +153,7 @@ public class FileEnvironmentHelper {
         }
 
         public boolean isNodeJsFile() {
-            return NodejsDetector.isNodeJsFile(instance.filePath)
-                    && VueDetector.isVueJsFile(instance.filePath);
+            return NodejsDetector.isNodeJsFile(instance.filePath);
         }
 
         public boolean isNodeJsPackageJsonFile() {
