@@ -7,9 +7,7 @@ It's useful when you are developing a file manager or an IDE.
 
 - 50+ languages supported
 - environment languages supported (not fully stable)
-  - NodeJS
-  - AngularJS
-  - React
+  - Nodejs, React, Vue, etc...
 
 ## Get Started
 
@@ -18,13 +16,21 @@ coming soon
 ## How to use?
 
 It's simple, just by adding a few codes.
+> Note: The icon to be displayed, depends on the extension name of the file path.
+
+For example, if you file path is:
+```
+/{EXTERNAL_STORAGE}/MyFolder/Main.java
+```
+
+It will display Java icon.
 
 ```java
 FileIconHelper fileIconHelper = new FileIconHelper(filePath);
 fileIconHelper.bindIcon(imageView);
 ```
 
-or you can simply get the file icon.
+or you can simply get the file icon and use it not just to ImageView.
 
 ```java
 imageView.setImageResource(fileIconHelper.getFileIcon());

@@ -177,7 +177,8 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.FileVi
     }
 
     private static int getIconForFile(File file) {
-        return new FileIconHelper(file.getAbsolutePath()).getFileIcon();
+        var fileIconHelper = new FileIconHelper(file.getAbsolutePath());
+        return fileIconHelper.getFileIcon();
     }
 
     private int getStrengthColorOfFileSize(String filePath, int max) {
