@@ -105,6 +105,35 @@ public class FileEnvironmentHelper {
         return isFileHasKeyName(filePath, "java", false, true);
     }
 
+    public boolean isJavascriptDirectory() {
+        return isFileHasKeyName(filePath, "javascript", false, true)
+        || isFileHasKeyName(filePath, "js", false, true);
+    }
+
+    public boolean isCssDirectory() {
+        return isFileHasKeyName(filePath, "css", false, true);
+    }
+
+    public boolean isPhpDirectory() {
+        return isFileHasKeyName(filePath, "php", false, true);
+    }
+
+    public boolean isPythonDirectory() {
+        return isFileHasKeyName(filePath, "python", false, true);
+    }
+
+    public boolean isJsonDirectory() {
+        return isFileHasKeyName(filePath, "json", false, true);
+    }
+
+    public boolean isMarkdownDirectory() {
+        return isFileHasKeyName(filePath, "markdown", false, true);
+    }
+
+    public boolean isLogDirectory() {
+        return isFileHasKeyName(filePath, "log", false, true);
+    }
+
     public boolean isIntelliJDirectory() {
         return isFileHasKeyName(filePath, ".idea", false, false);
     }

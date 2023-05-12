@@ -80,45 +80,55 @@ public class FileIconHelper {
 
         if (mimeType == null) mimeType = "";
 
-        if (FileUtil.isDirectory(filePath) || SAFUtil.isDirectory(mimeType)) {
-            var fileName = FileUtil.getFileNameOfPath(filePath);
-            if (filePath.equals("")) fileIconRes = R.drawable.ic_material_folder;
-
-            if (isDynamicFolderEnabled) {
-                if (isEnvironmentEnabled) {
-                    if (fileEnvHelper.angularjs().isAngularJsDirectory()) fileIconRes = R.drawable.ic_material_folder_angular;
-                    else if (fileEnvHelper.vuejs().isVueJsDirectory()) fileIconRes = R.drawable.ic_material_folder_vue;
-                    else if (fileEnvHelper.nodejs().isNodeJsDirectory()) fileIconRes = R.drawable.ic_material_folder_node;
-                    else if (fileEnvHelper.react().isReactDirectory()) fileIconRes = R.drawable.ic_material_folder_react_component;
-
-                    else if (fileEnvHelper.android().isAndroidDevDirectory()) fileIconRes = R.drawable.ic_material_folder_android;
-                    else if (fileEnvHelper.git().isGitDirectory()) fileIconRes = R.drawable.ic_material_folder_git;
-                }
-                else {
-                    if (fileEnvHelper.isJavaDirectory()) fileIconRes = R.drawable.ic_material_folder_java;
-
-                    else if (fileEnvHelper.isDownloadDirectory()) fileIconRes = R.drawable.ic_material_folder_download;
-                    else if (fileEnvHelper.isDCIMDirectory() || fileEnvHelper.isPicturesDirectory()) fileIconRes = R.drawable.ic_material_folder_images;
-                    else if (fileEnvHelper.isMusicDirectory() || fileEnvHelper.isNotificationsDirectory()) fileIconRes = R.drawable.ic_material_folder_audio;
-                    else if (fileEnvHelper.isMoviesDirectory()) fileIconRes = R.drawable.ic_material_folder_video;
-
-                    else if (fileEnvHelper.isSrcDirectory()) fileIconRes = R.drawable.ic_material_folder_src;
-                    else if (fileEnvHelper.isPublicDirectory()) fileIconRes = R.drawable.ic_material_folder_public;
-                    else if (fileEnvHelper.isAppDirectory()) fileIconRes = R.drawable.ic_material_folder_app;
-
-                    else if (fileEnvHelper.isIntelliJDirectory()) fileIconRes = R.drawable.ic_material_folder_intellij;
-                    else if (fileEnvHelper.isGradleJDirectory()) fileIconRes = R.drawable.ic_material_folder_gradle;
-                }
-            }
-
-            else {
-                if (FileUtil.isFileHidden(fileName)) fileIconRes = R.drawable.ic_material_folder_secure;
-                else fileIconRes = R.drawable.ic_material_folder;
-            }
-        } else apply();
+        if (FileUtil.isDirectory(filePath) || SAFUtil.isDirectory(mimeType))
+            setupFolderIcons();
+        else setupFileIcons();
     }
 
-    private void apply() {
+    private void setupFolderIcons() {
+        if (filePath.equals("")) fileIconRes = R.drawable.ic_material_folder;
+
+        if (isDynamicFolderEnabled) {
+            if (isEnvironmentEnabled) {
+                if (fileEnvHelper.angularjs().isAngularJsDirectory()) fileIconRes = R.drawable.ic_material_folder_angular;
+                else if (fileEnvHelper.vuejs().isVueJsDirectory()) fileIconRes = R.drawable.ic_material_folder_vue;
+                else if (fileEnvHelper.nodejs().isNodeJsDirectory()) fileIconRes = R.drawable.ic_material_folder_node;
+                else if (fileEnvHelper.react().isReactDirectory()) fileIconRes = R.drawable.ic_material_folder_react_component;
+
+                else if (fileEnvHelper.android().isAndroidDevDirectory()) fileIconRes = R.drawable.ic_material_folder_android;
+                else if (fileEnvHelper.git().isGitDirectory()) fileIconRes = R.drawable.ic_material_folder_git;
+            }
+            else {
+                if (fileEnvHelper.isJavaDirectory()) fileIconRes = R.drawable.ic_material_folder_java;
+                else if (fileEnvHelper.isJavascriptDirectory()) fileIconRes = R.drawable.ic_material_folder_javascript;
+                else if (fileEnvHelper.isPhpDirectory()) fileIconRes = R.drawable.ic_material_folder_php;
+                else if (fileEnvHelper.isCssDirectory()) fileIconRes = R.drawable.ic_material_folder_css;
+                else if (fileEnvHelper.isMarkdownDirectory()) fileIconRes = R.drawable.ic_material_folder_markdown;
+                else if (fileEnvHelper.isLogDirectory()) fileIconRes = R.drawable.ic_material_folder_log;
+                else if (fileEnvHelper.isJsonDirectory()) fileIconRes = R.drawable.ic_material_folder_json;
+                else if (fileEnvHelper.isPythonDirectory()) fileIconRes = R.drawable.ic_material_folder_python;
+
+                else if (fileEnvHelper.isDownloadDirectory()) fileIconRes = R.drawable.ic_material_folder_download;
+                else if (fileEnvHelper.isDCIMDirectory() || fileEnvHelper.isPicturesDirectory()) fileIconRes = R.drawable.ic_material_folder_images;
+                else if (fileEnvHelper.isMusicDirectory() || fileEnvHelper.isNotificationsDirectory()) fileIconRes = R.drawable.ic_material_folder_audio;
+                else if (fileEnvHelper.isMoviesDirectory()) fileIconRes = R.drawable.ic_material_folder_video;
+
+                else if (fileEnvHelper.isSrcDirectory()) fileIconRes = R.drawable.ic_material_folder_src;
+                else if (fileEnvHelper.isPublicDirectory()) fileIconRes = R.drawable.ic_material_folder_public;
+                else if (fileEnvHelper.isAppDirectory()) fileIconRes = R.drawable.ic_material_folder_app;
+
+                else if (fileEnvHelper.isIntelliJDirectory()) fileIconRes = R.drawable.ic_material_folder_intellij;
+                else if (fileEnvHelper.isGradleJDirectory()) fileIconRes = R.drawable.ic_material_folder_gradle;
+            }
+        }
+
+        else {
+            if (FileUtil.isFileHidden(filePath)) fileIconRes = R.drawable.ic_material_folder_secure;
+            else fileIconRes = R.drawable.ic_material_folder;
+        }
+    }
+
+    private void setupFileIcons() {
         fileIconRes = R.drawable.ic_material_document;
 
         if (fileHelper.isCompressFiles()) fileIconRes = R.drawable.ic_material_zip;
@@ -172,7 +182,6 @@ public class FileIconHelper {
         else if (is("json")) {
             if (isEnvironmentEnabled) {
                 if (fileEnvHelper.isNpmPackageJson()) fileIconRes = R.drawable.ic_material_npm;
-                else if (fileEnvHelper.react().isReactFile()) fileIconRes = R.drawable.ic_material_react;
                 else fileIconRes = R.drawable.ic_material_json;
             } else fileIconRes = R.drawable.ic_material_json;
         }
@@ -214,7 +223,6 @@ public class FileIconHelper {
         else if (fileEnvHelper.git().isGitIgnoreFile()) fileIconRes = R.drawable.ic_material_git;
         else if (fileEnvHelper.isLicenseFile()) fileIconRes = R.drawable.ic_material_certificate;
         else if (FileUtil.isFileHidden(filePath)) fileIconRes = R.drawable.ic_material_lock;
-
     }
     
     private boolean is(String str) {
