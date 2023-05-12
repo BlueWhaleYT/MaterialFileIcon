@@ -1,5 +1,11 @@
 package com.bluewhaleyt.materialfileicon.adapter;
 
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,15 +54,6 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.FileVi
     }
 
     private void setup() {
-//        Collections.sort(mItems, (o1, o2) -> {
-//            if (o1.isDirectory() && !o2.isDirectory()) {
-//                return -1;
-//            } else if (!o1.isDirectory() && o2.isDirectory()) {
-//                return 1;
-//            } else {
-//                return o1.getName().compareToIgnoreCase(o2.getName());
-//            }
-//        });
         Collections.sort(mItems, (o1, o2) -> {
             String name1 = o1.getName();
             String name2 = o2.getName();
@@ -66,22 +63,15 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.FileVi
             var fileHelper1 = new FileHelper(o1.getPath());
             var fileHelper2 = new FileHelper(o2.getPath());
 
-            // 如果 o1 或 o2 是 Android 設備預設建有的資料夾，優先排序
             if (isDir1 && fileHelper1.isAndroidDefaultDirectories(name1)) {
                 return -1;
             } else if (isDir2 && fileHelper2.isAndroidDefaultDirectories(name2)) {
                 return 1;
             }
 
-            // 如果只有 o1 或 o2 是資料夾，優先排序
-            if (isDir1 && !isDir2) {
-                return -1;
-            } else if (!isDir1 && isDir2) {
-                return 1;
-            } else {
-                // 其他情況按字母順序排序
-                return name1.compareToIgnoreCase(name2);
-            }
+            if (isDir1 && !isDir2) return -1;
+            else if (!isDir1 && isDir2) return 1;
+            else return name1.compareToIgnoreCase(name2);
         });
     }
 
