@@ -7,11 +7,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.bluewhaleyt.common.IntentUtil;
 import com.bluewhaleyt.crashdebugger.CrashDebugger;
-import com.bluewhaleyt.filemanagement.FileUtil;
 import com.bluewhaleyt.materialfileicon.R;
 import com.bluewhaleyt.materialfileicon.core.FileIconHelper;
+import com.bluewhaleyt.materialfileicon.core.FileUtil;
+import com.bluewhaleyt.materialfileicon.core.IntentUtil;
 import com.bluewhaleyt.materialfileicon.databinding.ActivityMainBinding;
 
 import java.io.File;
@@ -64,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
     private void check(String filePath) {
         var inputLayout = binding.inputLayoutFileName;
         var fileIconHelper = new FileIconHelper(filePath);
+
+        fileIconHelper.setDynamicFolderEnabled(true);
+        fileIconHelper.setEnvironmentEnabled(true);
 
         fileIconHelper.bindIcon(binding.imgIcon);
         inputLayout.setStartIconDrawable(fileIconHelper.getFileIcon());

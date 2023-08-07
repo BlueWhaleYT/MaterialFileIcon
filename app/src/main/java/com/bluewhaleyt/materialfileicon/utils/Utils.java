@@ -10,13 +10,8 @@ import android.graphics.drawable.Drawable;
 import androidx.core.content.ContextCompat;
 import androidx.palette.graphics.Palette;
 
-import com.bluewhaleyt.common.CommonUtil;
 import com.bluewhaleyt.materialfileicon.R;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.bluewhaleyt.materialfileicon.core.CommonUtil;
 
 public class Utils {
 

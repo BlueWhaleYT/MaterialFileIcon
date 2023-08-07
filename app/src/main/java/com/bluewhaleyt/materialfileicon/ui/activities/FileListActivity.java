@@ -1,17 +1,19 @@
 package com.bluewhaleyt.materialfileicon.ui.activities;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.os.Bundle;
-
-import com.bluewhaleyt.common.IntentUtil;
-import com.bluewhaleyt.common.PermissionUtil;
 import com.bluewhaleyt.crashdebugger.CrashDebugger;
-import com.bluewhaleyt.filemanagement.FileUtil;
 import com.bluewhaleyt.materialfileicon.adapter.FileListAdapter;
+import com.bluewhaleyt.materialfileicon.core.FileUtil;
+import com.bluewhaleyt.materialfileicon.core.IntentUtil;
+import com.bluewhaleyt.materialfileicon.core.PermissionUtil;
+import com.bluewhaleyt.materialfileicon.core.Util;
 import com.bluewhaleyt.materialfileicon.databinding.ActivityFileListBinding;
 import com.bluewhaleyt.materialfileicon.model.FileItem;
+import com.bluewhaleyt.materialfileicon.utils.Utils;
 
 import java.io.File;
 import java.util.List;

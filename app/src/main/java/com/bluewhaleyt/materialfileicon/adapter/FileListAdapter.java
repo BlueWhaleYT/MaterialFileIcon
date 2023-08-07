@@ -1,11 +1,5 @@
 package com.bluewhaleyt.materialfileicon.adapter;
 
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,15 +12,12 @@ import androidx.annotation.NonNull;
 import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bluewhaleyt.common.DateTimeFormatUtil;
-import com.bluewhaleyt.common.DynamicColorsUtil;
-import com.bluewhaleyt.filemanagement.FileUtil;
 import com.bluewhaleyt.materialfileicon.R;
 import com.bluewhaleyt.materialfileicon.core.FileHelper;
 import com.bluewhaleyt.materialfileicon.core.FileIconHelper;
+import com.bluewhaleyt.materialfileicon.core.FileUtil;
 import com.bluewhaleyt.materialfileicon.model.FileItem;
 import com.bluewhaleyt.materialfileicon.utils.Utils;
-import com.bluewhaleyt.unit.UnitUtil;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -105,20 +96,22 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.FileVi
         });
 
         var empty = "Empty";
-        var dirCount = FileUtil.getFileAmountOfPath(item.getPath()) != 0 ? FileUtil.getFileAmountOfPath(item.getPath()) + " Files" : empty;
-        var fileCount = FileUtil.getFileSizeOfPath(item.getPath()) != 0 ? UnitUtil.byteHumanize(FileUtil.getFileSizeOfPath(item.getPath())) : empty;
-        holder.tvFileSize.setText(FileUtil.isDirectory(item.getPath()) ? dirCount : fileCount);
-        holder.tvFileSize.setTextColor(
-                FileUtil.isDirectory(item.getPath())
-                ? new DynamicColorsUtil(context).getColorPrimary()
-                : getStrengthColorOfFileSize(item.getPath(), 100)
-        );
+        var dirCount = 0;
+        var fileCount = 0;
+//        var dirCount = FileUtil.getFileAmountOfPath(item.getPath()) != 0 ? FileUtil.getFileAmountOfPath(item.getPath()) + " Files" : empty;
+//        var fileCount = FileUtil.getFileSizeOfPath(item.getPath()) != 0 ? UnitUtil.byteHumanize(FileUtil.getFileSizeOfPath(item.getPath())) : empty;
+//        holder.tvFileSize.setText(FileUtil.isDirectory(item.getPath()) ? dirCount : fileCount);
+//        holder.tvFileSize.setTextColor(
+//                FileUtil.isDirectory(item.getPath())
+//                ? new DynamicColorsUtil(context).getColorPrimary()
+//                : getStrengthColorOfFileSize(item.getPath(), 100)
+//        );
 
-        holder.tvFileLastModifiedTime.setText(
-                FileUtil.getFileLastModifiedTimeFormatString(
-                        item.getPath(), DateTimeFormatUtil.FORMAT_DATE + " " + DateTimeFormatUtil.FORMAT_TIME_AM_PM
-                )
-        );
+//        holder.tvFileLastModifiedTime.setText(
+//                FileUtil.getFileLastModifiedTimeFormatString(
+//                        item.getPath(), DateTimeFormatUtil.FORMAT_DATE + " " + DateTimeFormatUtil.FORMAT_TIME_AM_PM
+//                )
+//        );
 
     }
 

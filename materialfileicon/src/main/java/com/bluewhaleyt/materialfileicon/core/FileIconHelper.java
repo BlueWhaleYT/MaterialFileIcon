@@ -1,9 +1,6 @@
 package com.bluewhaleyt.materialfileicon.core;
 
 import android.widget.ImageView;
-
-import com.bluewhaleyt.filemanagement.FileUtil;
-import com.bluewhaleyt.filemanagement.SAFUtil;
 import com.bluewhaleyt.materialfileicon.R;
 import com.bluewhaleyt.materialfileicon.core.environment.FileEnvironmentHelper;
 
